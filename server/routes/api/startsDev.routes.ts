@@ -73,6 +73,18 @@ routes.get('/dev/:dev', async (req: Request, res: Response, next) => {
 		next(err)
 	}
 })
+routes.patch('/', async (req: Request, res: Response, next) => {
+	try {
+		const user = await startsDevModel.update(req.body)
+		res.json({
+			status: 'success',
+			data: user,
+			message: 'user retrieved successfully',
+		})
+	} catch (err) {
+		next(err)
+	}
+})
 
 routes.delete('/:id', async (req: Request, res: Response, next) => {
 	try {

@@ -6,8 +6,12 @@ class StartsDevModel {
 	async create(nc: StarsDev): Promise<StarsDev> {
 		try {
 			const connect = await db.connect()
-			const sql = `INSERT INTO startsdev (developer_id,user_id) values ($1, $2) returning *`
-			const result = await connect.query(sql, [nc.developer_id, nc.user_id])
+			const sql = `INSERT INTO startsdev (developer_id, user_id, status) values ($1, $2, $3) returning *`
+			const result = await connect.query(sql, [
+				nc.developer_id,
+				nc.user_id,
+				nc.status === '' ? false : true,
+			])
 			connect.release()
 			return result.rows[0]
 		} catch (error) {
@@ -40,26 +44,37 @@ class StartsDevModel {
 			throw new Error(`.could not find user ${id}, ${err}`)
 		}
 	}
-	async getUserId(user_id: string): Promise<StarsDev> {
+	async getUserId(user_id: string): Promise<StarsDev[]> {
 		try {
 			const connect = await db.connect()
 			const sql = `Select * FROM startsdev WHERE  user_id=($1)`
 			const result = await connect.query(sql, [user_id])
 			connect.release()
-			return result.rows[0]
+			return result.rows
 		} catch (error) {
 			throw new Error(`${error}`)
 		}
 	}
-	async getDevId(developer_id: string): Promise<StarsDev> {
+	async getDevId(developer_id: string): Promise<StarsDev[]> {
 		try {
 			const connect = await db.connect()
 			const sql = `Select * FROM startsdev WHERE  developer_id=($1)`
 			const result = await connect.query(sql, [developer_id])
 			connect.release()
-			return result.rows[0]
+			return result.rows
 		} catch (error) {
 			throw new Error(`${error}`)
+		}
+	}
+	async update(u: StarsDev): Promise<StarsDev> {
+		try {
+			const connect = await db.connect()
+			const sql = `UPDATE startsdev SET status=$1  WHERE user_id=$2 RETURNING *`
+			const result = await connect.query(sql, [u.status, u.user_id])
+			connect.release()
+			return result.rows[0]
+		} catch (err) {
+			throw new Error(`${err}`)
 		}
 	}
 

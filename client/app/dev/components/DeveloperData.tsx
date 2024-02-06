@@ -18,7 +18,6 @@ function DeveloperData() {
     const dataDeveloper = async () => {
       try {
         const res = await axiosClient.get("/dev");
-        console.log(res.data.data);
         setData(res.data.data);
       } catch (error) {
         console.log(error);
@@ -54,7 +53,7 @@ function DeveloperData() {
                 {d.sales_name}
               </span>
 
-              <a href="#">
+              <a href="">
                 <h3 className="mt-0.5 text-lg font-medium text-gray-900">
                   {d.developer_name}
                 </h3>

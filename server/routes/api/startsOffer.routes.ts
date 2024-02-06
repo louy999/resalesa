@@ -1,14 +1,14 @@
 import {Router, Request, Response} from 'express'
 import config from '../../config'
-import LikedModel from '../../models/liked.model'
-const likedModel = new LikedModel()
+import StartsOfferModel from '../../models/startOffer.model'
+const startsOfferModel = new StartsOfferModel()
 
 const routes = Router()
 
 //create users
 routes.post('/', async (req: Request, res: Response, next) => {
 	try {
-		const user = await likedModel.create(req.body)
+		const user = await startsOfferModel.create(req.body)
 		res.json({
 			status: 'success',
 			data: {...user},
@@ -21,7 +21,7 @@ routes.post('/', async (req: Request, res: Response, next) => {
 //get all
 routes.get('/', async (req: Request, res: Response, next) => {
 	try {
-		const user = await likedModel.getAll()
+		const user = await startsOfferModel.getAll()
 		res.json({
 			status: 'success',
 			data: user,
@@ -34,7 +34,7 @@ routes.get('/', async (req: Request, res: Response, next) => {
 //get specific
 routes.get('/:id', async (req: Request, res: Response, next) => {
 	try {
-		const user = await likedModel.getOne(req.params.id as unknown as string)
+		const user = await startsOfferModel.getOne(req.params.id as unknown as string)
 		res.json({
 			status: 'success',
 			data: user,
@@ -47,7 +47,9 @@ routes.get('/:id', async (req: Request, res: Response, next) => {
 //get company
 routes.get('/user/:user', async (req: Request, res: Response, next) => {
 	try {
-		const user = await likedModel.getUserId(req.params.user as unknown as string)
+		const user = await startsOfferModel.getUserId(
+			req.params.user as unknown as string
+		)
 		res.json({
 			status: 'success',
 			data: user,
@@ -59,7 +61,7 @@ routes.get('/user/:user', async (req: Request, res: Response, next) => {
 })
 routes.get('/offer/:offer', async (req: Request, res: Response, next) => {
 	try {
-		const user = await likedModel.getOfferId(
+		const user = await startsOfferModel.getOfferId(
 			req.params.offer as unknown as string
 		)
 		res.json({
@@ -74,7 +76,7 @@ routes.get('/offer/:offer', async (req: Request, res: Response, next) => {
 
 routes.delete('/:id', async (req: Request, res: Response, next) => {
 	try {
-		const user = await likedModel.delete(req.params.id as unknown as string)
+		const user = await startsOfferModel.delete(req.params.id as unknown as string)
 		res.json({
 			status: 'success',
 			data: user,
