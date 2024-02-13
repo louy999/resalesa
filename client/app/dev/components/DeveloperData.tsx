@@ -36,9 +36,9 @@ function DeveloperData() {
               e.preventDefault;
               router.push(`?id=${d.id}`);
             }}
-            className="hover:animate-background  cursor-pointer rounded-xl bg-white bg-gradient-to-r p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
+            className="hover:animate-background bg-gray-200 cursor-pointer rounded-xl  bg-gradient-to-r p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
           >
-            <div className="rounded-[10px] bg-slate-50 p-4 !pt-3 sm:p-6">
+            <div className="rounded-[10px]  p-4 !pt-3 sm:p-6">
               <Image
                 width={1000}
                 height={1000}

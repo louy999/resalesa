@@ -73,6 +73,34 @@ routes.get('/offer/:offer', async (req: Request, res: Response, next) => {
 		next(err)
 	}
 })
+routes.get('/oau/:offer/:user', async (req: Request, res: Response, next) => {
+	try {
+		const user = await startsOfferModel.getSpsOfferAndUser(
+			req.params.offer as unknown as string,
+			req.params.user as unknown as string
+		)
+		res.json({
+			status: 'success',
+			data: user,
+			message: 'user retrieved successfully',
+		})
+	} catch (err) {
+		next(err)
+	}
+})
+
+routes.patch('/', async (req: Request, res: Response, next) => {
+	try {
+		const user = await startsOfferModel.update(req.body)
+		res.json({
+			status: 'success',
+			data: user,
+			message: 'user retrieved successfully',
+		})
+	} catch (err) {
+		next(err)
+	}
+})
 
 routes.delete('/:id', async (req: Request, res: Response, next) => {
 	try {

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { TbRulerMeasure } from "react-icons/tb";
+import { FcLikePlaceholder } from "react-icons/fc";
 
 import axios from "axios";
 import axiosClient from "../utils/api";
@@ -10,6 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Skeleton from "./Skeleton";
 import GetProductsRender from "./GetProductsRender";
+import Like from "./like";
 
 function AllProducts() {
   const searchParams = useSearchParams();
@@ -42,7 +44,7 @@ function AllProducts() {
         console.log(err);
       }
     };
-    cashbackApi();
+    // cashbackApi();
     callAPI();
   }, []);
   return (
@@ -53,11 +55,6 @@ function AllProducts() {
             <h2 className="text-xl font-bold text-white sm:text-3xl">
               Product Collection
             </h2>
-            <p className="mt-4 max-w-md text-slate-400	">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
-              praesentium cumque iure dicta incidunt est ipsam, officia dolor
-              fugit natus?
-            </p>
           </header>
 
           <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 ">
@@ -71,13 +68,14 @@ function AllProducts() {
                 .map((pro, index) => (
                   <div
                     key={index}
-                    className="shadow-lg md:hover:m-[-10px] duration-300  py-2 rounded-b-md"
+                    className=" md:hover:m-[-10px] duration-300 py-2 "
                     onClick={(e) => {
                       e.preventDefault;
                       router.push(`?type=${resSearchParams}&id=${pro.id}`);
                     }}
                   >
-                    <div className="">
+                    <div className="relative">
+                      <Like offerID={pro.id} />
                       <div>
                         <Image
                           src={pro.img[0]}
@@ -88,7 +86,7 @@ function AllProducts() {
                         />
                       </div>
 
-                      <div className="relative bg-white  text-black pt-3 capitalize p-2 ">
+                      <div className="relative bg-white  text-black pt-3 capitalize p-2 rounded-md ">
                         <h3 className="text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4">
                           {pro.title}
                         </h3>
@@ -105,7 +103,7 @@ function AllProducts() {
                         </p>
                         <p>type: {pro.type_sale}</p>
                         <p>installment: {pro.years}y</p>
-                        <p>
+                        {/* <p>
                           cash back:
                           <span className="text-p mx-1">
                             {(
@@ -120,7 +118,7 @@ function AllProducts() {
                             EGP
                           </span>
                           within {pro.check_c}
-                        </p>
+                        </p> */}
                         <p></p>
                         <p className="">{pro.developer_name}</p>
                       </div>

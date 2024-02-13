@@ -10,7 +10,7 @@ class StartsDevModel {
 			const result = await connect.query(sql, [
 				nc.developer_id,
 				nc.user_id,
-				nc.status === '' ? false : true,
+				nc.status,
 			])
 			connect.release()
 			return result.rows[0]

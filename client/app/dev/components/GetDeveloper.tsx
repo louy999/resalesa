@@ -100,7 +100,7 @@ function GetDeveloper() {
     <div
       className={`flex ${
         show ? "top-[5em]" : "top-[1000vh]"
-      } duration-300 justify-center items-center w-full md:w-[70%] h-fit left-[50%] translate-x-[-50%] shadow-2xl rounded-md z-[345654567] fixed`}
+      } duration-300 justify-center items-center w-full md:w-[70%] h-fit left-[50%]  translate-x-[-50%] shadow-2xl rounded-md z-[345654567] fixed`}
     >
       <div className=" bg-white rounded-md w-[95vw] h-[95vh] md:w-[80vw] md:h-[80vh] relative overflow-y-scroll">
         <div className="w-full p-3 h-fit flex justify-between items-center fixed">

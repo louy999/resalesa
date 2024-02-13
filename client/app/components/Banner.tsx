@@ -14,11 +14,6 @@ function Banner() {
               Forever Home.
             </strong>
           </h1>
-
-          <p className="mt-4 max-w-lg sm:text-xl/relaxed text-gray-300	 ">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
-            illo tenetur fuga ducimus numquam ea!
-          </p>
         </div>
       </div>
     </section>
