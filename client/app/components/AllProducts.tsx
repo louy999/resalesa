@@ -68,14 +68,16 @@ function AllProducts() {
                 .map((pro, index) => (
                   <div
                     key={index}
-                    className=" md:hover:m-[-10px] duration-300 py-2 "
-                    onClick={(e) => {
-                      e.preventDefault;
-                      router.push(`?type=${resSearchParams}&id=${pro.id}`);
-                    }}
+                    className=" md:hover:m-[-10px] duration-300 py-2 relative"
                   >
-                    <div className="relative">
-                      <Like offerID={pro.id} />
+                    <Like offerID={pro.id} />
+                    <div
+                      className=""
+                      onClick={(e) => {
+                        e.preventDefault;
+                        router.push(`?type=${resSearchParams}&id=${pro.id}`);
+                      }}
+                    >
                       <div>
                         <Image
                           src={pro.img[0]}
