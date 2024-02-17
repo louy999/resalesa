@@ -7,6 +7,7 @@ import { MdAddCall } from "react-icons/md";
 import { Link } from "next/link";
 import { useRouter } from "next/navigation";
 import GetDeveloper from "./GetDeveloper";
+import LikeDev from "./likeDev";
 
 function DeveloperData() {
   const router = useRouter();
@@ -32,10 +33,10 @@ function DeveloperData() {
         .map((d, a) => (
           <article
             key={a}
-            onClick={(e) => {
-              e.preventDefault;
-              router.push(`?id=${d.id}`);
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault;
+            //   router.push(`?id=${d.id}`);
+            // }}
             className="hover:animate-background bg-gray-200 cursor-pointer rounded-xl  bg-gradient-to-r p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
           >
             <div className="rounded-[10px]  p-4 !pt-3 sm:p-6">
@@ -46,18 +47,14 @@ function DeveloperData() {
                 src={`${d.developer_img}`}
                 className="h-56 w-56 m-auto rounded-full object-cover drop-shadow-2xl mb-2 transition group-hover:grayscale-[50%]"
               />
-              <span
-                datetime="2022-10-10"
-                className="block text-xs text-gray-500"
-              >
-                {d.sales_name}
-              </span>
 
-              <a href="">
-                <h3 className="mt-0.5 text-lg font-medium text-gray-900">
+              <div className="flex">
+                <h3 className="mt-0.5 text-lg font-medium  text-gray-900">
                   {d.developer_name}
+                <LikeDev resSearchParams={d.id} />
+
                 </h3>
-              </a>
+              </div>
 
               <div className="mt-4 flex flex-wrap gap-1">
                 {d.location_dev.map((l, b) => (

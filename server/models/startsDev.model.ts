@@ -66,6 +66,20 @@ class StartsDevModel {
 			throw new Error(`${error}`)
 		}
 	}
+	async getSpsOfferAndUser(
+		developer_Id: string,
+		user_id: string
+	): Promise<StarsDev> {
+		try {
+			const connect = await db.connect()
+			const sql = `select * from startsoffer WHERE developer_Id=($1) AND user_id=($2)`
+			const result = await connect.query(sql, [developer_Id, user_id])
+			connect.release()
+			return result.rows[0]
+		} catch (error) {
+			throw new Error(`${error}`)
+		}
+	}
 	async update(u: StarsDev): Promise<StarsDev> {
 		try {
 			const connect = await db.connect()

@@ -57,6 +57,18 @@ routes.get('/dev/:id', async (req: Request, res: Response, next) => {
 		next(err)
 	}
 })
+routes.get('/offer/:id', async (req: Request, res: Response, next) => {
+	try {
+		const offer = await offerModel.getByOffer(req.params.id as unknown as string)
+		res.json({
+			status: 'success',
+			data: offer,
+			message: 'offer Dev suc',
+		})
+	} catch (err) {
+		next(err)
+	}
+})
 //update offer
 routes.patch('/:id', async (req: Request, res: Response, next) => {
 	try {

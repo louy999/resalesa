@@ -7,7 +7,9 @@ import data from "../lib/data";
 import { usePathname } from "next/navigation";
 import BarType from "./BarType";
 import { CgProfile } from "react-icons/cg";
-import { getCookie } from "cookies-next";
+import { getCookie, deleteCookie } from "cookies-next";
+import axiosClient from "../utils/api";
+import MenuLog from "./menuLog";
 
 function Header() {
   const [background, setBackground] = useState("");
@@ -19,6 +21,7 @@ function Header() {
   const [openNav, setOpenNav] = useState(false);
   const [openNotification, setOpenNotification] = useState(false);
   const pathname = usePathname();
+
   useEffect(() => {
     if (getCookie("data") !== undefined) {
       setAuth(JSON.parse(getCookie("data")));
@@ -159,14 +162,7 @@ function Header() {
                   </div>
                 </div>
 
-                <Link
-                  className={`rounded-md px-5 py-2.5 text-md font-medium text-black duration-300 flex justify-between items-center gap-2 text-[1.2rem]  hover:text-p hover:bg-white hover:shadow-lg hover:text-[1.3rem]`}
-                  href="/profile"
-                >
-                  <CgProfile />
-
-                  {auth.name}
-                </Link>
+                <MenuLog name={auth.name} />
               </div>
             )}
             <div className="block md:hidden">

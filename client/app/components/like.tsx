@@ -4,6 +4,7 @@ import { FcLike } from "react-icons/fc";
 import { FcLikePlaceholder } from "react-icons/fc";
 import axiosClient from "../utils/api";
 import { getCookie } from "cookies-next";
+import Alert from "./alert";
 
 function Like({ offerID }) {
   const [auth, setAuth] = useState("");
@@ -47,7 +48,6 @@ function Like({ offerID }) {
     }
   }, [auth]);
   const getLike = async (userID, offerID) => {
-    setData("");
     try {
       const res = await axiosClient.get(`/starts/offer/user/${userID}`);
       setData(res.data.data);
@@ -56,28 +56,31 @@ function Like({ offerID }) {
     }
   };
   return (
-    <span
-      onClick={() => {
-        updateStatus(auth);
-      }}
-      className="absolute z-5678 p-5 w-5 h-5 text-[2em] hover:opacity-65 duration-300 right-[0.5em] top-[0.5em]"
-    >
-      {data.length === 0 ? (
-        <FcLikePlaceholder />
-      ) : (
-        data.map((l, a) =>
-          l.offer_id === offerID ? (
-            l.status ? (
-              <FcLike key={a} />
+    <>
+      <span
+        onClick={() => {
+          updateStatus(auth);
+        }}
+        className="cursor-pointer"
+      >
+        {/* loading ? ( "" ) : */}
+        {data.length === 0 ? (
+          <FcLikePlaceholder />
+        ) : (
+          data.map((l, a) =>
+            l.offer_id === offerID ? (
+              l.status ? (
+                <FcLike key={a} />
+              ) : (
+                <FcLikePlaceholder key={a} />
+              )
             ) : (
-              <FcLikePlaceholder key={a} />
+              ""
             )
-          ) : (
-            ""
           )
-        )
-      )}
-    </span>
+        )}
+      </span>
+    </>
   );
 }
 

@@ -4,5 +4,5 @@ CREATE TABLE startsoffer(
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     offer_id uuid references offer(id),
     status boolean,
-    user_id uuid references client(id)
+    user_id VARCHAR(500)
 );

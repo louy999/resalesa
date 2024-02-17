@@ -9,8 +9,9 @@ import { CiStar } from "react-icons/ci";
 import { GrLike } from "react-icons/gr";
 import { IoIosStar } from "react-icons/io";
 
-import axiosClient from "../../utils/api";
 import Image from "next/image";
+import LikeDev from "./likeDev";
+import axiosClient from "../../utils/api";
 
 function GetDeveloper() {
   const router = useRouter();
@@ -20,7 +21,6 @@ function GetDeveloper() {
   const [err, setErr] = useState("");
   const [show, setShow] = useState(false);
   const [getDataDeveloper, setGetDataDeveloper] = useState("");
-  const [getStarsNum, setGetStarsNum] = useState("");
   const resSearchParams = searchParams.get("id");
   const resTypeParams = searchParams.get("type");
 
@@ -29,14 +29,9 @@ function GetDeveloper() {
       setShow(true);
       const dataDeveloper = async () => {
         try {
-          const res = await axiosClient.get(`/dev/${resSearchParams}`);
+          const res = await axiosClient.get(`dev/${resSearchParams}`);
           setGetDataDeveloper(res.data.data);
-          const StarNumDev = await axiosClient.get(
-            `/starts/dev/dev/${resSearchParams}`
-          );
-          setGetStarsNum(StarNumDev.data.data);
-
-          // console.log(StarNumDev.data.data);
+          console.log(res.data.data);
         } catch (error) {
           console.log(error);
         }
@@ -56,60 +51,21 @@ function GetDeveloper() {
     }
   };
 
-  const dataDeveloper = async () => {
-    if (getCookie("data") !== undefined) {
-      try {
-        await axiosClient
-          .get(`/starts/dev/user/${JSON.parse(getCookie("data")).id}`)
-          .then((res) => {
-            console.log(res.data);
-
-            setIsLike("res");
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      setIsLike("");
-    }
-  };
-  useEffect(() => {
-    dataDeveloper();
-  }, []);
-  const LikeOrNot = async () => {
-    if (getCookie("data") !== undefined) {
-      try {
-        await axiosClient
-          .post("/starts/dev", {
-            devId: `${resSearchParams}`,
-            userID: `${JSON.parse(getCookie("data")).id}`,
-            status: `${setIsLike === "" ? true : false}`,
-          })
-          .then((res) => {
-            dataDeveloper();
-            console.log(res);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      router.push("/login");
-    }
-  };
   return (
     <div
       className={`flex ${
         show ? "top-[5em]" : "top-[1000vh]"
       } duration-300 justify-center items-center w-full md:w-[70%] h-fit left-[50%]  translate-x-[-50%] shadow-2xl rounded-md z-[345654567] fixed`}
     >
-      <div className=" bg-white rounded-md w-[95vw] h-[95vh] md:w-[80vw] md:h-[80vh] relative overflow-y-scroll">
+      <div className=" bg-slate-200 rounded-md w-[95vw] h-[95vh] md:w-[80vw] md:h-[80vh] relative overflow-y-scroll">
         <div className="w-full p-3 h-fit flex justify-between items-center fixed">
-          <h1 className="text-2xl flex items-center gap-3">
+          <h1 className="text-2xl flex items-center gap-3 text-black">
             {getDataDeveloper.developer_name}
             <FaPeopleGroup />
+            <LikeDev resSearchParams={resSearchParams} />
           </h1>
           <AiOutlineCloseCircle
-            className="w-8 h-8 cursor-pointer hover:text-p duration-300"
+            className="w-8 h-8 cursor-pointer hover:text-p hover:bg-white mr-5 text-white bg-p rounded-md duration-300"
             onClick={(e) => {
               e.preventDefault;
               router.back();
@@ -117,9 +73,9 @@ function GetDeveloper() {
           />
         </div>
         <div className=" relative top-[5em] ">
-          <div className="m-auto w-[80%]">
+          <div className="m-auto w-[80%]  flex items-center  justify-center">
             <Image
-              className="w-[100%]  md:w-[100%] h-[100%] shadow-md  bg-cover rounded-md mb-3"
+              className="w-[100%]  md:w-[70%] h-[50%] shadow-md  bg-cover rounded-md mb-3"
               src={getDataDeveloper.developer_img}
               alt="img"
               width={1000}
@@ -127,28 +83,6 @@ function GetDeveloper() {
             />
           </div>
           <div className="w-full p-5">
-            <div className="flex items-center capitalize">
-              {getDataDeveloper.developer_name}
-              {isLike === "" ? (
-                <CiStar
-                  onClick={() => {
-                    LikeOrNot();
-                  }}
-                  className="h-6 w-6 ml-2 cursor-pointer"
-                />
-              ) : (
-                <IoIosStar
-                  onClick={() => {
-                    LikeOrNot();
-                  }}
-                  className="h-6 w-6 ml-2 text-p cursor-pointer"
-                />
-              )}
-              <p className="flex items-center  text-p opacity-80 text-md">
-                {formatFollowers(getStarsNum.length)}
-                <CiStar className="w-3 h-3" />
-              </p>
-            </div>
             <div className="bg-white w-full"></div>
           </div>
         </div>

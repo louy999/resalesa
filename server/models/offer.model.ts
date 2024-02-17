@@ -70,6 +70,17 @@ class OfferModel {
 			throw new Error(`${err}`)
 		}
 	}
+	async getByOffer(developer_id: string): Promise<Offer> {
+		try {
+			const connect = await db.connect()
+			const sql = 'SELECT  * from offer WHERE offer_id=($1)'
+			const result = await connect.query(sql, [developer_id])
+			connect.release()
+			return result.rows[0]
+		} catch (err) {
+			throw new Error(`${err}`)
+		}
+	}
 	//update offer
 	async update(o: Offer): Promise<Offer> {
 		try {

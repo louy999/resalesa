@@ -21,11 +21,11 @@ function RecommendProducts({ data }) {
         console.log(err);
       }
     };
-    cashbackApi();
+    // cashbackApi();
   }, []);
   return (
     <div>
-      <h1>recommend</h1>
+      <h1 className="capitalize card-header text-black P-4">recommend</h1>
       <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 px-4">
         {data
           ?.sort((a, b) => new Date(b.date) - new Date(a.date))
@@ -40,8 +40,8 @@ function RecommendProducts({ data }) {
                 router.push(`?type=${resSearchParams}&id=${pro.id}`);
               }}
             >
-              <div className="">
-                <div>
+              <div className=" bg-slate-100">
+                <div className="bg-slate-100">
                   <Image
                     src={pro.img[0]}
                     className="rounded-t-lg w-fit bg-cover"
@@ -51,7 +51,7 @@ function RecommendProducts({ data }) {
                   />
                 </div>
 
-                <div className="relative bg-white  text-black pt-3 capitalize p-2 ">
+                <div className="relative bg-slate-100 text-black pt-3 capitalize p-2 ">
                   <h3 className="text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4">
                     {pro.title}
                   </h3>
@@ -66,7 +66,7 @@ function RecommendProducts({ data }) {
                   </p>
                   <p>type: {pro.type_sale}</p>
                   <p>installment: {pro.years}y</p>
-                  <p>
+                  {/* <p>
                     cash back:
                     <span className="text-p mx-1">
                       {(
@@ -80,7 +80,7 @@ function RecommendProducts({ data }) {
                       EGP
                     </span>
                     within {pro.check_c}
-                  </p>
+                  </p> */}
                   <p></p>
                   <p className="">{pro.developer_name}</p>
                 </div>

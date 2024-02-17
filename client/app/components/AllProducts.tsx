@@ -29,7 +29,6 @@ function AllProducts() {
       try {
         const res = await axiosClient.get("/offer");
         setData(res.data.data);
-
         setGetData(false);
       } catch (err) {
         console.log(err);
@@ -70,7 +69,17 @@ function AllProducts() {
                     key={index}
                     className=" md:hover:m-[-10px] duration-300 py-2 relative"
                   >
-                    <Like offerID={pro.id} />
+                    {Date.now() - new Date(pro.date) <
+                    3 * 24 * 60 * 60 * 1000 ? (
+                      <span className="absolute top-3 left-1 bg-white text-p p-1 rounded-lg">
+                        NEW
+                      </span>
+                    ) : (
+                      ""
+                    )}
+                    <span className="absolute z-5678 p-5 w-5 h-5 text-[2em] hover:opacity-65 duration-300 right-5 top-0">
+                      <Like offerID={pro.id} />
+                    </span>
                     <div
                       className=""
                       onClick={(e) => {
@@ -95,7 +104,10 @@ function AllProducts() {
                         <p className="flex items-center ">
                           area: {pro.area} <TbRulerMeasure />
                         </p>
-                        <p>down payment: {pro.down_payment}%</p>
+                        <p>
+                          down payment: {(pro.down_payment * pro.price) / 100}
+                          EGP
+                        </p>
                         <p>
                           price:{" "}
                           {pro.price
@@ -103,8 +115,9 @@ function AllProducts() {
                             .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                           EGP
                         </p>
-                        <p>type: {pro.type_sale}</p>
+                        {/* <p>type: {pro.type_sale}</p> */}
                         <p>installment: {pro.years}y</p>
+                        <p>delivery: {pro.delivery} Month</p>
                         {/* <p>
                           cash back:
                           <span className="text-p mx-1">
@@ -122,7 +135,10 @@ function AllProducts() {
                           within {pro.check_c}
                         </p> */}
                         <p></p>
-                        <p className="">{pro.developer_name}</p>
+                        <p className="">developer: {pro.developer_name}</p>
+                        <p className="bg-gray-200 text-p w-fit px-2 py-1 rounded-md">
+                          {pro.location}
+                        </p>
                       </div>
                     </div>
                   </div>
