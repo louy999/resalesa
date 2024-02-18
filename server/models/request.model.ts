@@ -7,8 +7,13 @@ class RequestModel {
 	async create(r: Request): Promise<Request> {
 		try {
 			const connect = await db.connect()
-			const sql = `INSERT INTO request (client_id, req, type) values ($1, $2, $3 ) returning *`
-			const result = await connect.query(sql, [r.client_id, r.req, r.type])
+			const sql = `INSERT INTO request (client_id, req, type, client_name) values ($1, $2, $3, $4 ) returning *`
+			const result = await connect.query(sql, [
+				r.client_id,
+				r.req,
+				r.type,
+				r.client_name,
+			])
 			connect.release()
 			return result.rows[0]
 		} catch (error) {

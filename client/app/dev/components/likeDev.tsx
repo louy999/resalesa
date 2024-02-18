@@ -60,9 +60,9 @@ function LikeDev({ resSearchParams }) {
         onClick={() => {
           addLike(auth);
         }}
-        className="cursor-pointer"
+        className="cursor-pointer absolute top-2 right-2 text-2xl"
       >
-        <span className="flex justify-start items-center ">
+        <span className="flex justify-start items-start ">
           <span className="text-black">{formatFollowers(like.length)}</span>
           <FcLike />
         </span>

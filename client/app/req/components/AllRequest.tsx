@@ -11,7 +11,6 @@ import AllComment from "./AllComment";
 import { getCookie } from "cookies-next";
 
 function AllRequest() {
-  useEffect(() => {}, []);
   const searchParams = useSearchParams();
   const resSearchParams = searchParams.get("type");
 
@@ -30,35 +29,32 @@ function AllRequest() {
     callAPI();
   }, []);
   return (
-    <div className=" relative top-[100px] left-[50%] translate-x-[-50%] h-fit w-full md:w-[80%] border border-p rounded-md p-2 shadow-lg bg-stone-100">
+    <div className=" relative top-[100px] left-[50%] translate-x-[-50%] h-fit w-[80%]  border  rounded-md p-2 shadow-lg bg-stone-100">
       <RenderBarType colorBar={"black"} />
       <div className="border-l-4  border-l-p">
         {data
-          ?.sort((a, b) => new Date(b.date) - new Date(a.date))
+          // ?.sort((a, b) => new Date(b.date) - new Date(a.date))
           .filter((item) => item.type === resSearchParams)
           .map((r, a) => (
             <div
-              className="w-full md:w-[95%] rounded-r-md border-l-4  p-2 shadow-lg bg-slate-200 relative my-5"
+              className="w-full md:w-[95%] hover:p-4 hover:left-5 duration-300 rounded-r-md border-l-4  p-2 shadow-lg bg-slate-200 text-black relative my-5"
               key={a}
             >
               <div className="before:content-[''] before:w-5 before:h-5 before:rounded-full before:absolute   before:bg-p before:top-[50%] before:left-[-1em]   before:text-red-500">
                 <div className="flex justify-between  w-full">
-                  <div className="flex  flex-wrap items-center ">
-                    <CgProfile />
-                    <span className="w-5 flex flex-wrap ">
-                      <span className="w-full">client</span>
-                      <span>date</span>
-                    </span>
-                    <div>type</div>
-                  </div>
-                  <div>
-                    <div>Liked (99)</div>
-                    <span>comment (99)</span>
+                  <div className="flex  gap-3 flex-wrap items-center ">
+                    <CgProfile className="w-6 h-6" />
+                    <div className=" flex flex-wrap ">
+                      <div className="w-full text-xl">{r.client_name}</div>
+                      <div className="text-p ">{r.type}</div>
+                    </div>
                   </div>
                 </div>
-                <div className="border-b-black border-b-2 mb-2">{r.req}</div>
+                <div className="bg-white p-2 rounded-md my-4">{r.req}</div>
               </div>
-              <div>{/* <AllComment idReq={r.id} /> */}</div>
+              <div>
+                <AllComment idReq={r.id} />
+              </div>
             </div>
           ))}
       </div>

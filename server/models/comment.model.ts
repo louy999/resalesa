@@ -6,11 +6,12 @@ class CommentModel {
 	async create(nc: Comment): Promise<Comment> {
 		try {
 			const connect = await db.connect()
-			const sql = `INSERT INTO comment (req_id, developer_id, text) values ($1, $2, $3 ) returning *`
+			const sql = `INSERT INTO comment (req_id, developer_id, text, developer_name) values ($1, $2, $3, $4 ) returning *`
 			const result = await connect.query(sql, [
 				nc.req_id,
 				nc.developer_id,
 				nc.text,
+				nc.developer_name,
 			])
 			connect.release()
 			return result.rows[0]
@@ -44,13 +45,13 @@ class CommentModel {
 			throw new Error(`.could not find user ${id}, ${err}`)
 		}
 	}
-	async getReqId(req_id: string): Promise<Comment> {
+	async getReqId(req_id: string): Promise<Comment[]> {
 		try {
 			const connect = await db.connect()
-			const sql = `Select * FROM comment WHERE  req_id=($1)`
+			const sql = `SELECT * FROM comment WHERE  req_id=($1)`
 			const result = await connect.query(sql, [req_id])
 			connect.release()
-			return result.rows[0]
+			return result.rows
 		} catch (error) {
 			throw new Error(`${error}`)
 		}

@@ -37,8 +37,9 @@ function DeveloperData() {
             //   e.preventDefault;
             //   router.push(`?id=${d.id}`);
             // }}
-            className="hover:animate-background bg-gray-200 cursor-pointer rounded-xl  bg-gradient-to-r p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
+            className="hover:animate-background relative bg-gray-200 select-none rounded-xl  bg-gradient-to-r p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
           >
+            <LikeDev resSearchParams={d.id} />
             <div className="rounded-[10px]  p-4 !pt-3 sm:p-6">
               <Image
                 width={1000}
@@ -48,11 +49,9 @@ function DeveloperData() {
                 className="h-56 w-56 m-auto rounded-full object-cover drop-shadow-2xl mb-2 transition group-hover:grayscale-[50%]"
               />
 
-              <div className="flex">
+              <div className="">
                 <h3 className="mt-0.5 text-lg font-medium  text-gray-900">
                   {d.developer_name}
-                <LikeDev resSearchParams={d.id} />
-
                 </h3>
               </div>
 
