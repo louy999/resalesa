@@ -6,6 +6,5 @@ CREATE TABLE client(
     name VARCHAR(200) NOT NULL,
     email VARCHAR(500) UNIQUE NOT NULL,
     phone text [] UNIQUE NOT NULL,
-    interested TEXT [],
     password VARCHAR(500) NOT NULL
 );

@@ -2,10 +2,14 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
-import { deleteCookie } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next";
 
 function MenuLog({ name }) {
   const [menu, setMenu] = useState(false);
+  const [dataLoginUser, setDataLoginUser] = useState(
+    JSON.parse(getCookie("data"))
+  );
+
   return (
     <div
       className="relative"
@@ -14,13 +18,35 @@ function MenuLog({ name }) {
       }}
     >
       <div
-        className={`rounded-md  cursor-pointer px-5 py-2.5 text-md font-medium text-black duration-300 flex justify-between items-center gap-2 text-[1.2rem]  hover:text-p hover:bg-white hover:shadow-lg hover:text-[1.3rem]`}
+        className={`rounded-md  cursor-pointer px-5 py-2.5 text-md font-medium text-black duration-300 flex justify-between items-center gap-2 text-[1.2rem] `}
       >
-        <CgProfile />
-
-        {name}
+        <div className="dropdown-container justify-center">
+          <div className="dropdown">
+            <label className="btn btn-solid-error flex gap-2 my-2" tabIndex="0">
+              <CgProfile />
+              {name}
+            </label>
+            <div className="dropdown-menu dropdown-menu-bottom-center text-white w-fit">
+              <div className="border-2 border-p p-1 rounded-md flex flex-wrap gap-1 mb-2">
+                <span className="capitalize">name: {dataLoginUser.name}</span>
+                <span className="capitalize">email: {dataLoginUser.email}</span>
+                <span className="capitalize">phone: {dataLoginUser.phone}</span>
+              </div>
+              <li
+                tabIndex="-1"
+                onClick={() => {
+                  deleteCookie("data");
+                  window.location.reload();
+                }}
+                className="dropdown-item text-sm btn-error text-center"
+              >
+                Logout
+              </li>
+            </div>
+          </div>
+        </div>
       </div>
-      <div
+      {/* <div
         className={`absolute z-[-4567]  top-0 left-1 w-full h-fit ${
           menu ? " translate-y-0" : "-translate-y-48"
         } pt-12 flex justify-center duration-300 bg-white shadow-md rounded-md `}
@@ -33,16 +59,13 @@ function MenuLog({ name }) {
             profile
           </Link>
           <li
-            onClick={() => {
-              deleteCookie("data");
-              window.location.reload();
-            }}
+           
             className="cursor-pointer hover:text-lg duration-300"
           >
             logout
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 }

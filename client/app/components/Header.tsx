@@ -130,7 +130,7 @@ function Header() {
                 <div className="hidden sm:flex">
                   <Link
                     className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-p hover:text-[1.1rem]  duration-300"
-                    href="/"
+                    href="/register"
                   >
                     Register
                   </Link>
@@ -138,7 +138,7 @@ function Header() {
               </div>
             ) : (
               <div className="flex items-center justify-between">
-                <div
+                {/* <div
                   className=" relative"
                   onClick={() => {
                     handelOpenNotification();
@@ -160,7 +160,7 @@ function Header() {
                       hi
                     </div>
                   </div>
-                </div>
+                </div> */}
 
                 <MenuLog name={auth.name} />
               </div>

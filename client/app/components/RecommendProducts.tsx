@@ -26,7 +26,7 @@ function RecommendProducts({ data }) {
   return (
     <div>
       <h1 className="capitalize card-header text-black P-4">recommend</h1>
-      <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 px-4">
+      <ul className=" grid gap-3 sm:grid-cols-2 lg:grid-cols-4 px-4">
         {data
           ?.sort((a, b) => new Date(b.date) - new Date(a.date))
           .filter((pro) => pro.status === true)

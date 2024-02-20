@@ -13,7 +13,6 @@ import { getCookie } from "cookies-next";
 function AllRequest() {
   const searchParams = useSearchParams();
   const resSearchParams = searchParams.get("type");
-
   const [data, setData] = useState([]);
   const [err, setErr] = useState("");
   useEffect(() => {
@@ -28,12 +27,15 @@ function AllRequest() {
 
     callAPI();
   }, []);
+  useEffect(() => {
+    console.log(resSearchParams);
+  }, [resSearchParams]);
   return (
     <div className=" relative top-[100px] left-[50%] translate-x-[-50%] h-fit w-[80%]  border  rounded-md p-2 shadow-lg bg-stone-100">
       <RenderBarType colorBar={"black"} />
       <div className="border-l-4  border-l-p">
         {data
-          // ?.sort((a, b) => new Date(b.date) - new Date(a.date))
+          ?.sort((a, b) => new Date(b.date) - new Date(a.date))
           .filter((item) => item.type === resSearchParams)
           .map((r, a) => (
             <div

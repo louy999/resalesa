@@ -90,12 +90,12 @@ function GetProductsRender() {
             }}
           />
         </div>
-        <div className=" h-[70vh]  overflow-y-scroll ">
+        <div className="h-[70vh]  overflow-y-scroll ">
           <div className="flex flex-wrap md:flex-nowrap">
-            <div className="img p-2 w-[100%] h-96 ">
+            <div className="img p-2 w-[100%] h-fit ">
               {dataProduct.img && dataProduct.img.length > 0 && (
                 <Image
-                  className="w-[100%]  md:w-[90%] h-[60%] bg-cover rounded-md mb-3"
+                  className=" w-[700px] h-[350px] bg-cover rounded-md mb-3"
                   src={dataProduct.img[numberImg]}
                   alt="img"
                   width={1000}
@@ -179,7 +179,7 @@ function GetProductsRender() {
               </div>
             </div>
           </div>
-          <div className="">
+          <div className="mt-4">
             <RecommendProducts data={recommend} />
           </div>
         </div>

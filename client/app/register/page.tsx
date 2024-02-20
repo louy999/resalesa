@@ -6,9 +6,12 @@ import Image from "next/image";
 import axiosClient from "../utils/api";
 import Link from "next/link";
 
-function Login() {
+function Register() {
   const [input, setInput] = useState<any>({
     password: "",
+    name: "",
+    phone: "",
+    aPassword: "",
     email: "",
   });
 
@@ -18,70 +21,74 @@ function Login() {
   };
   const callAPI = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axiosClient.post("users/auth", input);
-      setCookie("data", {
-        name: `${res.data.data.name}`,
-        email: `${res.data.data.email}`,
-        id: `${res.data.data.id}`,
-        phone: `${res.data.data.phone}`,
-      });
-      setError(
-        <div className="alert bg-red-11 absolute bottom-5 left-5 w-fit">
-          <svg
-            width="48"
-            height="48"
-            viewBox="0 0 48 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM18.58 32.58L11.4 25.4C10.62 24.62 10.62 23.36 11.4 22.58C12.18 21.8 13.44 21.8 14.22 22.58L20 28.34L33.76 14.58C34.54 13.8 35.8 13.8 36.58 14.58C37.36 15.36 37.36 16.62 36.58 17.4L21.4 32.58C20.64 33.36 19.36 33.36 18.58 32.58Z"
-              fill="#fff"
-            />
-          </svg>
-          <div className="flex flex-col">
-            <span className="text-white capitalize">login successful</span>
-          </div>
-        </div>
-      );
-      setTimeout(() => {
-        window.location.pathname = "/";
-      }, 1000);
-
-      // setCookie("data",);
-    } catch (err) {
-      setError(
-        <div className="alert alert-error absolute bottom-5 left-5 w-fit">
-          <svg
-            width="48"
-            height="48"
-            viewBox="0 0 48 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM24 26C22.9 26 22 25.1 22 24V16C22 14.9 22.9 14 24 14C25.1 14 26 14.9 26 16V24C26 25.1 25.1 26 24 26ZM26 34H22V30H26V34Z"
-              fill="#E92C2C"
-            />
-          </svg>
-          <div className="flex flex-col">
-            <span className="text-content2"> {err.response.data.message}</span>
-          </div>
-        </div>
-      );
-      setTimeout(() => {
-        setError("");
-      }, 5000);
+    if (input.name !== "") {
+    } else {
+      setError("write your name");
     }
+    // try {
+    //   const res = await axiosClient.post("users/", input);
+    //   setCookie("data", {
+    //     name: `${res.data.data.name}`,
+    //     email: `${res.data.data.email}`,
+    //     id: `${res.data.data.id}`,
+    //     phone: `${res.data.data.phone}`,
+    //   });
+    //   setError(
+    //     <div className="alert bg-red-11 absolute bottom-5 left-5 w-fit">
+    //       <svg
+    //         width="48"
+    //         height="48"
+    //         viewBox="0 0 48 48"
+    //         fill="none"
+    //         xmlns="http://www.w3.org/2000/svg"
+    //       >
+    //         <path
+    //           fillRule="evenodd"
+    //           clipRule="evenodd"
+    //           d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM18.58 32.58L11.4 25.4C10.62 24.62 10.62 23.36 11.4 22.58C12.18 21.8 13.44 21.8 14.22 22.58L20 28.34L33.76 14.58C34.54 13.8 35.8 13.8 36.58 14.58C37.36 15.36 37.36 16.62 36.58 17.4L21.4 32.58C20.64 33.36 19.36 33.36 18.58 32.58Z"
+    //           fill="#fff"
+    //         />
+    //       </svg>
+    //       <div className="flex flex-col">
+    //         <span className="text-white capitalize">login successful</span>
+    //       </div>
+    //     </div>
+    //   );
+    //   setTimeout(() => {
+    //     window.location.pathname = "/";
+    //   }, 1000);
+
+    //   // setCookie("data",);
+    // } catch (err) {
+    //   setError(
+    //     <div className="alert alert-error absolute bottom-5 left-5 w-fit">
+    //       <svg
+    //         width="48"
+    //         height="48"
+    //         viewBox="0 0 48 48"
+    //         fill="none"
+    //         xmlns="http://www.w3.org/2000/svg"
+    //       >
+    //         <path
+    //           fillRule="evenodd"
+    //           clipRule="evenodd"
+    //           d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM24 26C22.9 26 22 25.1 22 24V16C22 14.9 22.9 14 24 14C25.1 14 26 14.9 26 16V24C26 25.1 25.1 26 24 26ZM26 34H22V30H26V34Z"
+    //           fill="#E92C2C"
+    //         />
+    //       </svg>
+    //       <div className="flex flex-col">
+    //         <span className="text-content2"> {err.response.data.message}</span>
+    //       </div>
+    //     </div>
+    //   );
+    //   setTimeout(() => {
+    //     setError("");
+    //   }, 5000);
+    // }
   };
 
   return (
-    <section className="bg-border h-[100vh]">
+    <section className="bg-border h-[100vh] overflow-hidden">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
         <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
           <Image
@@ -93,7 +100,7 @@ function Login() {
           />
         </aside>
 
-        <main className="flex items-center justify-center  text-center	 lg:text-start md:text-start	 px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+        <main className="flex items-center justify-center  text-center	 lg:text-start md:text-start	 px-4 py-4 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl">
             <Link href="/" className="block text-p">
               <span className="sr-only">Home</span>
@@ -110,7 +117,7 @@ function Login() {
               Welcome to ResaLesa 🏘️
             </h1>
 
-            <form className="mx-auto flex w-full max-w-lg flex-col rounded-xl border border-border bg-backgroundSecondary p-4 sm:p-20">
+            <form className="mx-auto flex w-full max-w-lg flex-col rounded-xl border border-border bg-backgroundSecondary p-2 sm:p-12">
               <div className="flex w-full flex-col gap-2">
                 <p>Sign in with</p>
                 <div className="flex w-full flex-col gap-2">
@@ -147,14 +154,27 @@ function Login() {
                   </button>
                 </div>
               </div>
-              <div className="divider my-6 text-xs text-content2">
+              <div className="divider my-4 text-xs text-content2">
                 or continue with
               </div>
 
-              <div className="form-group">
+              <div className="form-group capitalize">
+                {err}
+
+                <div className="form-field">
+                  <label className="form-label">your name</label>
+
+                  <input
+                    placeholder="Type here"
+                    type="name"
+                    id="name"
+                    name="name"
+                    onChange={handelChange}
+                    className="input max-w-full"
+                  />
+                </div>
                 <div className="form-field">
                   <label className="form-label">Email address</label>
-
                   <input
                     placeholder="Type here"
                     type="email"
@@ -170,6 +190,18 @@ function Login() {
                   </label>
                 </div>
                 <div className="form-field">
+                  <label className="form-label">your phone</label>
+
+                  <input
+                    placeholder="Type here"
+                    type="number"
+                    id="phone"
+                    name="phone"
+                    onChange={handelChange}
+                    className="input max-w-full"
+                  />
+                </div>
+                <div className="form-field">
                   <label className="form-label">
                     <span>Password</span>
                   </label>
@@ -183,8 +215,8 @@ function Login() {
                       className="input max-w-full"
                     />
                   </div>
-                  {err}
                 </div>
+
                 <div className="form-field">
                   <div className="form-control justify-between">
                     <label className="form-label">
@@ -197,7 +229,7 @@ function Login() {
                     </label>
                   </div>
                 </div>
-                <div className="form-field pt-5">
+                <div className="form-field pt-3">
                   <div
                     onClick={callAPI}
                     className="form-control justify-between"
@@ -230,4 +262,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
