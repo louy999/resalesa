@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <div className=" relative">
         <Banner />
-        <div className=" z-[156789] bg-transparent backdrop-blur-lg lg:backdrop-blur-md md:backdrop-blur-md relative top-[40vh] md:top-[70vh] mb-[40vh] md:mb-[70vh]">
+        <div className=" z-[156789] bg-transparent backdrop-blur-lg lg:backdrop-blur-md md:backdrop-blur-md relative w-screen top-[40vh] md:top-[70vh] mb-[40vh] md:mb-[70vh]">
           <RenderBarType colorBar={"white"} />
           <AllProducts />
         </div>

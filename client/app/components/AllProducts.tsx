@@ -49,7 +49,7 @@ function AllProducts() {
   return (
     <>
       <section className="">
-        <div className="mx-auto relative cursor-pointer text-white     max-w-screen-xl  px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div className="mx-auto relative cursor-pointer text-white  w-full   max-w-screen-xl  px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
           <header className="">
             <h2 className="text-xl font-bold text-white sm:text-3xl">
               Product Collection
@@ -58,7 +58,12 @@ function AllProducts() {
 
           <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 ">
             {getData ? (
-              <Skeleton />
+              <>
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
+              </>
             ) : data?.length ? (
               data
                 ?.sort(
