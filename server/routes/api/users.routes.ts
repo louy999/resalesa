@@ -87,19 +87,6 @@ routes.patch('/:id', async (req: Request, res: Response, next) => {
 		next(err)
 	}
 })
-// update interested client
-routes.patch('/inter/:id', async (req: Request, res: Response, next) => {
-	try {
-		const user = await userModel.updateInterested(req.body)
-		res.json({
-			status: 'success',
-			data: user,
-			message: 'user updated successfully',
-		})
-	} catch (err) {
-		next(err)
-	}
-})
 // delete client
 routes.delete('/:id', async (req: Request, res: Response, next) => {
 	try {

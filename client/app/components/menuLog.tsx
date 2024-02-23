@@ -26,11 +26,18 @@ function MenuLog({ name }) {
               <CgProfile />
               {name}
             </label>
-            <div className="dropdown-menu dropdown-menu-bottom-center text-white w-fit">
-              <div className="border-2 border-p p-1 rounded-md flex flex-wrap gap-1 mb-2">
-                <span className="capitalize">name: {dataLoginUser.name}</span>
-                <span className="capitalize">email: {dataLoginUser.email}</span>
-                <span className="capitalize">phone: {dataLoginUser.phone}</span>
+            <div className="dropdown-menu dropdown-menu-bottom-center text-white">
+              <div className="shadow-md bg-slate-600  p-1 rounded-md flex flex-wrap gap-1 mb-2">
+                <div className="capitalize w-full">
+                  name: {dataLoginUser.name}
+                </div>
+
+                <div className="capitalize w-full">
+                  email: {dataLoginUser.email}
+                </div>
+                <div className="capitalize w-full">
+                  phone: {dataLoginUser.phone}
+                </div>
               </div>
               <li
                 tabIndex="-1"

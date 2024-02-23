@@ -93,25 +93,14 @@ function Login() {
           />
         </aside>
 
-        <main className="flex items-center justify-center  text-center	 lg:text-start md:text-start	 px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+        <main className="flex items-center justify-center  text-center	 lg:text-start md:text-start max-sm:h-5/6	 px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl">
-            <Link href="/" className="block text-p">
-              <span className="sr-only">Home</span>
-
-              <Image
-                src="/favicon.ico"
-                alt="icon"
-                className="h-8 sm:h-10"
-                width={50}
-                height={100}
-              />
-            </Link>
             <h1 className="mt-6 text-2xl font-bold text-content1 sm:text-3xl md:text-4xl">
               Welcome to ResaLesa 🏘️
             </h1>
 
             <form className="mx-auto flex w-full max-w-lg flex-col rounded-xl border border-border bg-backgroundSecondary p-4 sm:p-20">
-              <div className="flex w-full flex-col gap-2">
+              {/* <div className="flex w-full flex-col gap-2">
                 <p>Sign in with</p>
                 <div className="flex w-full flex-col gap-2">
                   <button type="button" className="btn gap-2 bg-gray-5">
@@ -149,9 +138,20 @@ function Login() {
               </div>
               <div className="divider my-6 text-xs text-content2">
                 or continue with
-              </div>
+              </div> */}
 
               <div className="form-group">
+                <Link href="/" className="block text-p">
+                  <span className="sr-only">Home</span>
+
+                  <Image
+                    src="/favicon.ico"
+                    alt="icon"
+                    className="h-8 sm:h-10"
+                    width={50}
+                    height={100}
+                  />
+                </Link>
                 <div className="form-field">
                   <label className="form-label">Email address</label>
 
@@ -214,10 +214,10 @@ function Login() {
                 <div className="form-field">
                   <div className="form-control">
                     <Link
-                      href="/"
+                      href="/register"
                       className="link link-underline-hover text-red-11 text-sm"
                     >
-                      have an account? Sign in
+                      Create new account
                     </Link>
                   </div>
                 </div>

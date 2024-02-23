@@ -11,114 +11,108 @@ function Register() {
     password: "",
     name: "",
     phone: "",
-    aPassword: "",
+    password: "",
     email: "",
   });
-
   const [err, setError] = useState<any>("");
+  const [con, setCon] = useState<any>("");
   const handelChange = (e: any) => {
     setInput((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+   };
   const callAPI = async (e) => {
     e.preventDefault();
     if (input.name !== "") {
+      if (input.email !== "") {
+        if (input.phone !== "") {
+          if (input.password !== "") {
+            try {
+              const res = await axiosClient.post("users/", input);
+              setCookie("data", {
+                name: `${res.data.data.name}`,
+                email: `${res.data.data.email}`,
+                id: `${res.data.data.id}`,
+                phone: `${res.data.data.phone}`,
+              });
+              setCon(
+                <div className="alert bg-red-11 absolute bottom-5 left-5 w-fit">
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM18.58 32.58L11.4 25.4C10.62 24.62 10.62 23.36 11.4 22.58C12.18 21.8 13.44 21.8 14.22 22.58L20 28.34L33.76 14.58C34.54 13.8 35.8 13.8 36.58 14.58C37.36 15.36 37.36 16.62 36.58 17.4L21.4 32.58C20.64 33.36 19.36 33.36 18.58 32.58Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                  <div className="flex flex-col">
+                    <span className="text-white capitalize">
+                      login successful
+                    </span>
+                  </div>
+                </div>
+              );
+              setTimeout(() => {
+                window.location.pathname = "/";
+              }, 1000);
+              // setCookie("data",);
+            } catch (err) {
+              setError(
+                <div className="alert alert-error absolute bottom-5 left-5 w-fit">
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM24 26C22.9 26 22 25.1 22 24V16C22 14.9 22.9 14 24 14C25.1 14 26 14.9 26 16V24C26 25.1 25.1 26 24 26ZM26 34H22V30H26V34Z"
+                      fill="#E92C2C"
+                    />
+                  </svg>
+                  <div className="flex flex-col">
+                    <span className="text-content2">
+                      {" "}
+                      {err.response.data.message}
+                    </span>
+                  </div>
+                </div>
+              );
+              setTimeout(() => {
+                setError("");
+              }, 5000);
+            }
+          } else {
+            setError("write your Password");
+          }
+        } else {
+          setError("write your phone");
+        }
+      } else {
+        setError("write your email");
+      }
     } else {
       setError("write your name");
     }
-    // try {
-    //   const res = await axiosClient.post("users/", input);
-    //   setCookie("data", {
-    //     name: `${res.data.data.name}`,
-    //     email: `${res.data.data.email}`,
-    //     id: `${res.data.data.id}`,
-    //     phone: `${res.data.data.phone}`,
-    //   });
-    //   setError(
-    //     <div className="alert bg-red-11 absolute bottom-5 left-5 w-fit">
-    //       <svg
-    //         width="48"
-    //         height="48"
-    //         viewBox="0 0 48 48"
-    //         fill="none"
-    //         xmlns="http://www.w3.org/2000/svg"
-    //       >
-    //         <path
-    //           fillRule="evenodd"
-    //           clipRule="evenodd"
-    //           d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM18.58 32.58L11.4 25.4C10.62 24.62 10.62 23.36 11.4 22.58C12.18 21.8 13.44 21.8 14.22 22.58L20 28.34L33.76 14.58C34.54 13.8 35.8 13.8 36.58 14.58C37.36 15.36 37.36 16.62 36.58 17.4L21.4 32.58C20.64 33.36 19.36 33.36 18.58 32.58Z"
-    //           fill="#fff"
-    //         />
-    //       </svg>
-    //       <div className="flex flex-col">
-    //         <span className="text-white capitalize">login successful</span>
-    //       </div>
-    //     </div>
-    //   );
-    //   setTimeout(() => {
-    //     window.location.pathname = "/";
-    //   }, 1000);
-
-    //   // setCookie("data",);
-    // } catch (err) {
-    //   setError(
-    //     <div className="alert alert-error absolute bottom-5 left-5 w-fit">
-    //       <svg
-    //         width="48"
-    //         height="48"
-    //         viewBox="0 0 48 48"
-    //         fill="none"
-    //         xmlns="http://www.w3.org/2000/svg"
-    //       >
-    //         <path
-    //           fillRule="evenodd"
-    //           clipRule="evenodd"
-    //           d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM24 26C22.9 26 22 25.1 22 24V16C22 14.9 22.9 14 24 14C25.1 14 26 14.9 26 16V24C26 25.1 25.1 26 24 26ZM26 34H22V30H26V34Z"
-    //           fill="#E92C2C"
-    //         />
-    //       </svg>
-    //       <div className="flex flex-col">
-    //         <span className="text-content2"> {err.response.data.message}</span>
-    //       </div>
-    //     </div>
-    //   );
-    //   setTimeout(() => {
-    //     setError("");
-    //   }, 5000);
-    // }
   };
 
   return (
     <section className="bg-border h-[100vh] overflow-hidden">
-      <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
-        <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
-          <Image
-            alt="Pattern"
-            width={1000}
-            height={1000}
-            src="https://images.unsplash.com/photo-1609770231080-e321deccc34c?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        </aside>
-
-        <main className="flex items-center justify-center  text-center	 lg:text-start md:text-start	 px-4 py-4 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-          <div className="max-w-xl lg:max-w-3xl">
-            <Link href="/" className="block text-p">
-              <span className="sr-only">Home</span>
-
-              <Image
-                src="/favicon.ico"
-                alt="icon"
-                className="h-8 sm:h-10"
-                width={50}
-                height={100}
-              />
-            </Link>
-            <h1 className="mt-6 text-2xl font-bold text-content1 sm:text-3xl md:text-4xl">
+      <div className="flex justify-center items-center h-screen">
+        <main className="flex items-center justify-center  text-center  lg:text-start md:text-start	 px-4 py-4  sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 w-full md:w-4/6 ">
+          <div className="w-full flex justify-center flex-wrap">
+            <h1 className="mt-6 text-2xl w-full text-center font-bold text-content1 sm:text-3xl md:text-4xl">
               Welcome to ResaLesa 🏘️
             </h1>
-
             <form className="mx-auto flex w-full max-w-lg flex-col rounded-xl border border-border bg-backgroundSecondary p-2 sm:p-12">
-              <div className="flex w-full flex-col gap-2">
+              {/* <div className="flex w-full flex-col gap-2">
                 <p>Sign in with</p>
                 <div className="flex w-full flex-col gap-2">
                   <button type="button" className="btn gap-2 bg-gray-5">
@@ -156,10 +150,22 @@ function Register() {
               </div>
               <div className="divider my-4 text-xs text-content2">
                 or continue with
-              </div>
+              </div> */}
 
               <div className="form-group capitalize">
-                {err}
+                <Link href="/" className="block text-p">
+                  <span className="sr-only">Home</span>
+
+                  <Image
+                    src="/favicon.ico"
+                    alt="icon"
+                    className="h-8 sm:h-10"
+                    width={50}
+                    height={100}
+                  />
+                </Link>
+                {con}
+                <div className="text-p uppercase text-xl">{err}</div>
 
                 <div className="form-field">
                   <label className="form-label">your name</label>
@@ -246,7 +252,7 @@ function Register() {
                 <div className="form-field">
                   <div className="form-control">
                     <Link
-                      href="/"
+                      href="/login"
                       className="link link-underline-hover text-red-11 text-sm"
                     >
                       have an account? Sign in

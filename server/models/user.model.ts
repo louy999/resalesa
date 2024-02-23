@@ -14,13 +14,12 @@ class UserModel {
 		try {
 			const connect = await db.connect()
 			const sql =
-				'INSERT INTO client ( name, email, password, phone, interested ) values ($1, $2, $3, $4, $5) returning *'
+				'INSERT INTO client ( name, email, password, phone ) values ($1, $2, $3, $4) returning *'
 			const result = await connect.query(sql, [
 				u.name,
 				u.email,
 				hashPassword(u.password),
 				u.phone,
-				u.interested,
 			])
 			connect.release()
 			return result.rows[0]
@@ -95,18 +94,7 @@ class UserModel {
 			throw new Error(`${err}`)
 		}
 	}
-	//update interested  client
-	async updateInterested(u: Client): Promise<Client> {
-		try {
-			const connect = await db.connect()
-			const sql = `UPDATE client SET company=$1  WHERE id=$2 RETURNING *`
-			const result = await connect.query(sql, [u.interested, u.id])
-			connect.release()
-			return result.rows[0]
-		} catch (err) {
-			throw new Error(`${err}`)
-		}
-	}
+
 	//delete client
 	async delete(id: string): Promise<Client> {
 		try {
