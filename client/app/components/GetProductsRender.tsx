@@ -18,15 +18,15 @@ function GetProductsRender() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [show, setShow] = useState(false);
-  const [dataProduct, setDataProduct] = useState([]);
+  const [dataProduct, setDataProduct] = useState<any>([]);
   const [cashBack, setCashBack] = useState([]);
   const [recommend, setRecommend] = useState([]);
-  const [clientName, setClientName] = useState("");
+  const [clientName, setClientName] = useState<any>("");
   const [numberImg, setNumberImg] = useState(0);
   const resSearchParams = searchParams.get("id");
   const resTypeParams = searchParams.get("type");
 
-  const ProApi = async (id) => {
+  const ProApi = async (id: string) => {
     try {
       const res = await axiosClient.get(`/offer/dev/${id}`);
       setRecommend(res.data.data);
@@ -34,31 +34,31 @@ function GetProductsRender() {
       console.log(err);
     }
   };
-  const getDataProductsApi = async () => {
-    try {
-      const res = await axiosClient.get(`/offer/${resSearchParams}`);
-      setDataProduct(res.data.data);
-      console.log(res.data.data);
-      ProApi(res.data.data.developer_id);
-      if (res.data.data !== undefined) {
-        const view = await axiosClient.post(`/views`, {
-          offer_id: resSearchParams,
-          client_id: clientName,
-        });
-      } else {
-        setShow(false);
-      }
-    } catch (error) {
-      console.log(error);
-      setShow(false);
-    }
-  };
 
   useEffect(() => {
+    const getDataProductsApi = async () => {
+      try {
+        const res = await axiosClient.get(`/offer/${resSearchParams}`);
+        setDataProduct(res.data.data);
+        console.log(res.data.data);
+        ProApi(res.data.data.developer_id);
+        if (res.data.data !== undefined) {
+          const view = await axiosClient.post(`/views`, {
+            offer_id: resSearchParams,
+            client_id: clientName,
+          });
+        } else {
+          setShow(false);
+        }
+      } catch (error) {
+        setShow(false);
+      }
+    };
     if (resSearchParams !== null) {
       setShow(true);
-      if (getCookie("data") !== undefined) {
-        setClientName(JSON.parse(getCookie("data")).id);
+      const cookieData = getCookie("data");
+      if (cookieData !== undefined) {
+        setClientName(JSON.parse(cookieData)?.id);
       } else {
         setClientName("");
       }
@@ -105,7 +105,7 @@ function GetProductsRender() {
               <div className="flex items-start w-[100%] h-20 md:w-[90%]  gap-2 overflow-x-scroll overflow-y-hidden">
                 {dataProduct &&
                   dataProduct.img &&
-                  dataProduct.img.map((i, a) => (
+                  dataProduct.img.map((i: any, a: any): any => (
                     <Image
                       onClick={() => {
                         setNumberImg(a);

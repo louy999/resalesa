@@ -9,9 +9,9 @@ import axios from "axios";
 import axiosClient from "../utils/api";
 import Image from "next/image";
 import Link from "next/link";
-import Skeleton from "./Skeleton";
 import GetProductsRender from "./GetProductsRender";
 import Like from "./like";
+import Skeleton from "./Skeleton";
 
 function AllProducts() {
   const searchParams = useSearchParams();
@@ -61,15 +61,20 @@ function AllProducts() {
               <Skeleton />
             ) : data?.length ? (
               data
-                ?.sort((a, b) => new Date(b.date) - new Date(a.date))
-                .filter((pro) => pro.status === true)
-                .filter((item) => item.type_estate === resSearchParams)
-                .map((pro, index) => (
+                ?.sort(
+                  (a: any, b: any): number =>
+                    new Date(b.date).getTime() - new Date(a.date).getTime()
+                )
+                .filter((pro: any): boolean => pro.status === true)
+                .filter(
+                  (item: any): any => item.type_estate === resSearchParams
+                )
+                .map((pro: any, index: any): any => (
                   <div
                     key={index}
                     className=" md:hover:m-[-10px] duration-300 py-2 relative"
                   >
-                    {Date.now() - new Date(pro.date) <
+                    {Date.now() - new Date(pro.date).getTime() <
                     3 * 24 * 60 * 60 * 1000 ? (
                       <span className="absolute top-3 left-1 bg-white text-p p-1 rounded-lg">
                         NEW

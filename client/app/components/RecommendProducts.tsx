@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { TbRulerMeasure } from "react-icons/tb";
 
-function RecommendProducts({ data }) {
+function RecommendProducts({ data }: any) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const resSearchParams = searchParams.get("type");
@@ -28,10 +28,13 @@ function RecommendProducts({ data }) {
       <h1 className="capitalize card-header text-black P-4">recommend</h1>
       <ul className=" grid gap-3 sm:grid-cols-2 lg:grid-cols-4 px-4">
         {data
-          ?.sort((a, b) => new Date(b.date) - new Date(a.date))
-          .filter((pro) => pro.status === true)
-          .filter((item) => item.type_estate === resSearchParams)
-          .map((pro, index) => (
+          ?.sort(
+            (a: any, b: any): any =>
+              new Date(b.date).getTime() - new Date(a.date).getTime()
+          )
+          .filter((pro: any): any => pro.status === true)
+          .filter((item: any): any => item.type_estate === resSearchParams)
+          .map((pro: any, index: any) => (
             <div
               key={index}
               className="shadow-lg md:hover:m-[-10px] duration-300  py-2 rounded-b-md"

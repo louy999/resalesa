@@ -4,19 +4,19 @@ import { CgProfile } from "react-icons/cg";
 import { useEffect, useState } from "react";
 import axiosClient from "../../utils/api";
 
-function AllComment({ idReq }) {
+function AllComment({ idReq }: any) {
   const [comment, setComment] = useState([]);
   const [imgDevSet, setImgDevSet] = useState([]);
   const [err, setErr] = useState("");
-  const callAPI = async () => {
-    try {
-      const res = await axiosClient.get(`/comment/req/${idReq}`);
-      setComment(res.data.data);
-    } catch (err) {
-      setErr(err);
-    }
-  };
   useEffect(() => {
+    const callAPI = async () => {
+      try {
+        const res = await axiosClient.get(`/comment/req/${idReq}`);
+        setComment(res.data.data);
+      } catch (error: any) {
+        setErr(error);
+      }
+    };
     callAPI();
   }, [idReq]);
 
@@ -26,9 +26,12 @@ function AllComment({ idReq }) {
         {comment.length}Comment
       </div>
       {comment
-        ?.sort((a, b) => new Date(b.date) - new Date(a.date))
+        ?.sort(
+          (a: any, b: any) =>
+            new Date(b.date).getTime() - new Date(a.date).getTime()
+        )
 
-        .map((r, a) => (
+        .map((r: any, a: any) => (
           <div
             key={a}
             className="w-full border-l-4 border-b-2 p-2 bg-slate-200 relative border-l-p border-b-p   "

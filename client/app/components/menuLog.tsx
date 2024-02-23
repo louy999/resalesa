@@ -4,11 +4,13 @@ import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 import { deleteCookie, getCookie } from "cookies-next";
 
-function MenuLog({ name }) {
+function MenuLog({ name }: any) {
   const [menu, setMenu] = useState(false);
-  const [dataLoginUser, setDataLoginUser] = useState(
-    JSON.parse(getCookie("data"))
-  );
+  const [dataLoginUser, setDataLoginUser] = useState<any>("");
+  useEffect(() => {
+    const cookieData: any = getCookie("data");
+    setDataLoginUser(JSON.parse(cookieData));
+  }, []);
 
   return (
     <div
@@ -22,7 +24,7 @@ function MenuLog({ name }) {
       >
         <div className="dropdown-container justify-center">
           <div className="dropdown">
-            <label className="btn btn-solid-error flex gap-2 my-2" tabIndex="0">
+            <label className="btn btn-solid-error flex gap-2 my-2">
               <CgProfile />
               {name}
             </label>
@@ -40,7 +42,6 @@ function MenuLog({ name }) {
                 </div>
               </div>
               <li
-                tabIndex="-1"
                 onClick={() => {
                   deleteCookie("data");
                   window.location.reload();

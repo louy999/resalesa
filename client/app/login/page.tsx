@@ -16,7 +16,7 @@ function Login() {
   const handelChange = (e: any) => {
     setInput((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const callAPI = async (e) => {
+  const callAPI = async (e: any) => {
     e.preventDefault();
     try {
       const res = await axiosClient.post("users/auth", input);
@@ -52,7 +52,7 @@ function Login() {
       }, 1000);
 
       // setCookie("data",);
-    } catch (err) {
+    } catch (error: any) {
       setError(
         <div className="alert alert-error absolute bottom-5 left-5 w-fit">
           <svg
@@ -70,7 +70,10 @@ function Login() {
             />
           </svg>
           <div className="flex flex-col">
-            <span className="text-content2"> {err.response.data.message}</span>
+            <span className="text-content2">
+              {" "}
+              {error.response.data.message}
+            </span>
           </div>
         </div>
       );

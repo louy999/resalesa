@@ -5,7 +5,7 @@ import Image from "next/image";
 import data from "../lib/data";
 import { useSearchParams } from "next/navigation";
 
-function BarType({ color }) {
+function BarType({ color }: any) {
   const BarTypeLink = () => {
     const searchParams = useSearchParams();
 

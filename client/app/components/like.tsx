@@ -6,10 +6,10 @@ import axiosClient from "../utils/api";
 import { getCookie } from "cookies-next";
 import Alert from "./alert";
 
-function Like({ offerID }) {
+function Like({ offerID }: any) {
   const [auth, setAuth] = useState("");
   const [data, setData] = useState([]);
-  const postLike = async (userID) => {
+  const postLike = async (userID: any) => {
     try {
       const postLikeApi = await axiosClient.post(`/starts/offer`, {
         user_id: userID,
@@ -21,7 +21,7 @@ function Like({ offerID }) {
       console.log(error);
     }
   };
-  const updateStatus = async (userID) => {
+  const updateStatus = async (userID: any) => {
     if (getCookie("data") !== undefined) {
       try {
         const res = await axiosClient.get(
@@ -40,14 +40,16 @@ function Like({ offerID }) {
     }
   };
   useEffect(() => {
-    if (getCookie("data") !== undefined) {
-      setAuth(JSON.parse(getCookie("data")).id);
+    const cookieData = getCookie("data");
+
+    if (cookieData !== undefined) {
+      setAuth(JSON.parse(cookieData).id);
       if (auth !== "") {
         getLike(auth);
       }
     }
   }, [auth]);
-  const getLike = async (userID, offerID) => {
+  const getLike = async (userID: any) => {
     try {
       const res = await axiosClient.get(`/starts/offer/user/${userID}`);
       setData(res.data.data);
@@ -67,7 +69,7 @@ function Like({ offerID }) {
         {data.length === 0 ? (
           <FcLikePlaceholder />
         ) : (
-          data.map((l, a) =>
+          data.map((l: any, a: any): any =>
             l.offer_id === offerID ? (
               l.status ? (
                 <FcLike key={a} />

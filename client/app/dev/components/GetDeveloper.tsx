@@ -20,7 +20,7 @@ function GetDeveloper() {
   const [isLike, setIsLike] = useState("");
   const [err, setErr] = useState("");
   const [show, setShow] = useState(false);
-  const [getDataDeveloper, setGetDataDeveloper] = useState("");
+  const [getDataDeveloper, setGetDataDeveloper] = useState<any>("");
   const resSearchParams = searchParams.get("id");
   const resTypeParams = searchParams.get("type");
 
@@ -41,7 +41,7 @@ function GetDeveloper() {
       setShow(false);
     }
   }, [resSearchParams]);
-  const formatFollowers = (count) => {
+  const formatFollowers = (count: any) => {
     if (count >= 1000000) {
       return (count / 1000000).toFixed(1) + "m";
     } else if (count >= 1000) {

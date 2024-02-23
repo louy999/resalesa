@@ -13,7 +13,7 @@ import MenuLog from "./menuLog";
 
 function Header() {
   const [background, setBackground] = useState("");
-  const [auth, setAuth] = useState("");
+  const [auth, setAuth] = useState({ name: "" });
   const [textColor, setTextColor] = useState("white");
   const [renderBar, setRenderBar] = useState(true);
   const [hidePath, setHidePath] = useState(true);
@@ -23,8 +23,9 @@ function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (getCookie("data") !== undefined) {
-      setAuth(JSON.parse(getCookie("data")));
+    const cookieData = getCookie("data");
+    if (cookieData !== undefined) {
+      setAuth(JSON.parse(cookieData)?.id);
     }
   }, []);
   useEffect(() => {

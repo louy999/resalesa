@@ -4,7 +4,7 @@ import BarType from "./BarType";
 import { usePathname } from "next/navigation";
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-function RenderBarType({ colorBar }) {
+function RenderBarType({ colorBar }: any) {
   const [renderBar, setRenderBar] = useState(true);
   const pathname = usePathname();
 

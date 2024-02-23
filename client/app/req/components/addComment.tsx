@@ -10,27 +10,29 @@ function AddComment() {
     type: "app-villa",
   });
   const [err, setErr] = useState("");
-  const handelChange = (e) => {
+  const handelChange = (e: any) => {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const addComment = async (e) => {
+  const addComment = async (e: any) => {
     e.preventDefault();
-    if (getCookie("data") !== undefined) {
+    const cookieData = getCookie("data");
+    if (cookieData !== undefined) {
       setErr("loading");
+
       try {
         const res = await axiosClient.post("/req", {
-          client_id: JSON.parse(getCookie("data")).id,
+          client_id: JSON.parse(cookieData)?.id,
           type: input.type,
           req: input.req,
-          client_name: JSON.parse(getCookie("data")).name,
+          client_name: JSON.parse(cookieData)?.name,
         });
         console.log(res.data);
         setTimeout(() => {
           window.location.reload();
         }, 2000);
         setErr("Done");
-      } catch (error) {
+      } catch (error: any) {
         console.log(error);
       }
     } else {

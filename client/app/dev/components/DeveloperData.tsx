@@ -4,7 +4,7 @@ import Image from "next/image";
 import axiosClient from "../../utils/api";
 import { FaWhatsapp } from "react-icons/fa";
 import { MdAddCall } from "react-icons/md";
-import { Link } from "next/link";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import GetDeveloper from "./GetDeveloper";
 import LikeDev from "./likeDev";
@@ -35,8 +35,8 @@ function DeveloperData() {
         <Skeleton />
       ) : (
         data
-          .filter((pro) => pro.status === true)
-          .map((d, a) => (
+          .filter((pro: any): any => pro.status === true)
+          .map((d: any, a: any): any => (
             <article
               key={a}
               // onClick={(e) => {
@@ -62,7 +62,7 @@ function DeveloperData() {
                 </div>
 
                 <div className="mt-4 flex flex-wrap gap-1">
-                  {d.location_dev.map((l, b) => (
+                  {d.location_dev.map((l: any, b: any): any => (
                     <>
                       <span
                         key={b}

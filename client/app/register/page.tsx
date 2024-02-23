@@ -11,15 +11,14 @@ function Register() {
     password: "",
     name: "",
     phone: "",
-    password: "",
     email: "",
   });
   const [err, setError] = useState<any>("");
   const [con, setCon] = useState<any>("");
   const handelChange = (e: any) => {
     setInput((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
-   };
-  const callAPI = async (e) => {
+  };
+  const callAPI = async (e: any) => {
     e.preventDefault();
     if (input.name !== "") {
       if (input.email !== "") {
@@ -60,7 +59,7 @@ function Register() {
                 window.location.pathname = "/";
               }, 1000);
               // setCookie("data",);
-            } catch (err) {
+            } catch (error: any) {
               setError(
                 <div className="alert alert-error absolute bottom-5 left-5 w-fit">
                   <svg
@@ -80,7 +79,7 @@ function Register() {
                   <div className="flex flex-col">
                     <span className="text-content2">
                       {" "}
-                      {err.response.data.message}
+                      {error.response.data.message}
                     </span>
                   </div>
                 </div>

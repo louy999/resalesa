@@ -20,8 +20,8 @@ function AllRequest() {
       try {
         const res = await axiosClient.get("/req");
         setData(res.data.data);
-      } catch (err) {
-        setErr(err);
+      } catch (error: any) {
+        setErr(error);
       }
     };
 
@@ -35,9 +35,12 @@ function AllRequest() {
       <RenderBarType colorBar={"black"} />
       <div className="border-l-4  border-l-p">
         {data
-          ?.sort((a, b) => new Date(b.date) - new Date(a.date))
-          .filter((item) => item.type === resSearchParams)
-          .map((r, a) => (
+          ?.sort(
+            (a: any, b: any) =>
+              new Date(b.date).getTime() - new Date(a.date).getTime()
+          )
+          .filter((item: any) => item.type === resSearchParams)
+          .map((r: any, a: any) => (
             <div
               className="w-full md:w-[95%] hover:p-4 hover:left-5 duration-300 rounded-r-md border-l-4  p-2 shadow-lg bg-slate-200 text-black relative my-5"
               key={a}

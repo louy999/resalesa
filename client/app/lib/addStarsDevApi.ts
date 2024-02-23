@@ -1,8 +1,8 @@
 import axiosClient from "../utils/api";
-const addStarDevApi = async (devId, userId, status) => {
+const addStarDevApi = async (devId: any, userId: any, status: any) => {
   try {
     await axiosClient
-      .post("/starts/dev", { devId, userID, status })
+      .post("/starts/dev", { devId, userId, status })
       .then((res) => {
         console.log(res);
       });
