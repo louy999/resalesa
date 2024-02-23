@@ -6,10 +6,17 @@ import { deleteCookie, getCookie } from "cookies-next";
 
 function MenuLog({ name }: any) {
   const [menu, setMenu] = useState(false);
-  const [dataLoginUser, setDataLoginUser] = useState<any>("");
+  const [dataLoginUser, setDataLoginUser] = useState<any>(null);
   useEffect(() => {
-    const cookieData: any = getCookie("data");
-    setDataLoginUser(JSON.parse(cookieData));
+    const cookieData = getCookie("data");
+    if (cookieData !== undefined) {
+      try {
+        const parsedData = JSON.parse(cookieData);
+        setDataLoginUser(parsedData);
+      } catch (error) {
+        console.error("Error parsing cookie data:", error);
+      }
+    }
   }, []);
 
   return (
@@ -31,14 +38,14 @@ function MenuLog({ name }: any) {
             <div className="dropdown-menu dropdown-menu-bottom-center text-white">
               <div className="shadow-md bg-slate-600  p-1 rounded-md flex flex-wrap gap-1 mb-2">
                 <div className="capitalize w-full">
-                  name: {dataLoginUser.name}
+                  name: {dataLoginUser?.name}
                 </div>
 
                 <div className="capitalize w-full">
-                  email: {dataLoginUser.email}
+                  email: {dataLoginUser?.email}
                 </div>
                 <div className="capitalize w-full">
-                  phone: {dataLoginUser.phone}
+                  phone: {dataLoginUser?.phone}
                 </div>
               </div>
               <li
