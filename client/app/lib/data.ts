@@ -1,8 +1,8 @@
 import axiosClient from "../utils/api";
 const dataNavLink = [
-  { name: "Home", href: "/?type=app-villa" },
+  { name: "Home", href: "/?type=app" },
   { name: "Developer", href: "/dev" },
-  { name: "Request", href: "/req?type=app-villa" },
+  { name: "Request", href: "/req?type=app" },
 ];
 const dataType = [
   { name: "Apartment", href: "?type=app" },

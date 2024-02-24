@@ -32,7 +32,13 @@ function DeveloperData() {
   return (
     <>
       {getData ? (
-        <Skeleton />
+        <>
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+        </>
       ) : (
         data
           .filter((pro: any): any => pro.status === true)
