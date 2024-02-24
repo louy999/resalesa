@@ -13,7 +13,7 @@ import MenuLog from "./menuLog";
 
 function Header() {
   const [background, setBackground] = useState("");
-  const [auth, setAuth] = useState({ name: "" });
+  const [auth, setAuth] = useState<any>("");
   const [textColor, setTextColor] = useState("white");
   const [renderBar, setRenderBar] = useState(true);
   const [hidePath, setHidePath] = useState(true);
@@ -25,9 +25,10 @@ function Header() {
   useEffect(() => {
     const cookieData = getCookie("data");
     if (cookieData !== undefined) {
-      setAuth(JSON.parse(cookieData)?.id);
+      setAuth(JSON.parse(cookieData));
     }
   }, []);
+
   useEffect(() => {
     // Function to update window width
     const updateWindowWidth = () => {
@@ -72,7 +73,7 @@ function Header() {
       }
     };
     window.addEventListener("scroll", handleBar);
-  }, []);
+  }, [pathname]);
 
   const NavLink = () => {
     return data?.dataNavLink.map((n, a) => (
@@ -112,7 +113,7 @@ function Header() {
               <ul
                 className={`flex items-center ${
                   openNav ? "" : "hidden"
-                }flex-wrap bg-white md:flex-nowrap md:bg-transparent w-[100vw] justify-center  md:w-fit left-0 top-16	absolute md:static gap-6 text-sm`}
+                }flex-wrap bg-white md:flex-nowrap md:bg-transparent w-full justify-center  md:w-fit left-0 top-16	absolute md:static gap-6 text-sm`}
               >
                 {renderBar ? <NavLink /> : <BarType color={"black"} />}
               </ul>
@@ -162,7 +163,6 @@ function Header() {
                     </div>
                   </div>
                 </div> */}
-
                 <MenuLog name={auth.name} />
               </div>
             )}

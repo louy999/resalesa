@@ -5,7 +5,8 @@ const dataNavLink = [
   { name: "Request", href: "/req?type=app-villa" },
 ];
 const dataType = [
-  { name: "Apartment-Villa", href: "?type=app-villa" },
+  { name: "Apartment", href: "?type=app" },
+  { name: "Villa", href: "?type=villa" },
   { name: "Pharmacies", href: "?type=pharmacies" },
   { name: "Banks", href: "?type=banks" },
   { name: "Commercial", href: "?type=commercial" },

@@ -35,7 +35,7 @@ function RenderBarType({ colorBar }: any) {
         <div className="flex h-16 items-center justify-between">
           <div className=" md:block">
             <nav aria-label="Global">
-              <ul className="flex items-center gap-3 p-3  text-sm md:gap-6  ">
+              <ul className="flex items-center gap-3 md:p-3   text-sm md:gap-6  max-sm:flex-wrap max-sm:justify-center">
                 {renderBar ? <BarType color={colorBar} /> : ""}
               </ul>
             </nav>

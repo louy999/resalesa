@@ -35,52 +35,39 @@ function MenuLog({ name }: any) {
               <CgProfile />
               {name}
             </label>
-            <div className="dropdown-menu dropdown-menu-bottom-center text-white">
-              <div className="shadow-md bg-slate-600  p-1 rounded-md flex flex-wrap gap-1 mb-2">
-                <div className="capitalize w-full">
-                  name: {dataLoginUser?.name}
-                </div>
-
-                <div className="capitalize w-full">
-                  email: {dataLoginUser?.email}
-                </div>
-                <div className="capitalize w-full">
-                  phone: {dataLoginUser?.phone}
-                </div>
-              </div>
-              <li
-                onClick={() => {
-                  deleteCookie("data");
-                  window.location.reload();
-                }}
-                className="dropdown-item text-sm btn-error text-center"
-              >
-                Logout
-              </li>
-            </div>
+            <div className="dropdown-menu dropdown-menu-bottom-center text-white"></div>
           </div>
         </div>
       </div>
-      {/* <div
+      <div
         className={`absolute z-[-4567]  top-0 left-1 w-full h-fit ${
-          menu ? " translate-y-0" : "-translate-y-48"
+          menu ? " translate-y-8" : "-translate-y-60"
         } pt-12 flex justify-center duration-300 bg-white shadow-md rounded-md `}
       >
-        <ul className="flex justify-center gap-2 p-2 flex-wrap text-black capitalize">
-          <Link
-            href="/profile"
-            className="cursor-pointer hover:text-lg duration-300"
-          >
-            profile
-          </Link>
+        <ul className="flex justify-center gap-2 p-2 flex-wrap text-black w-fit  capitalize">
+          <div className="shadow-md bg-slate-600  p-1 rounded-md  flex flex-wrap gap-1 mb-2">
+            <div className="capitalize flex w-full">
+              name: {dataLoginUser?.name}
+            </div>
+
+            <div className="capitalize flex w-full">
+              email: {dataLoginUser?.email}
+            </div>
+            <div className="capitalize flex w-full">
+              phone: {dataLoginUser?.phone}
+            </div>
+          </div>
           <li
-           
-            className="cursor-pointer hover:text-lg duration-300"
+            onClick={() => {
+              deleteCookie("data");
+              window.location.reload();
+            }}
+            className="dropdown-item text-sm btn-error text-center"
           >
-            logout
+            Logout
           </li>
         </ul>
-      </div> */}
+      </div>
     </div>
   );
 }

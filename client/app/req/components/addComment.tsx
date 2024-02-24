@@ -71,17 +71,18 @@ function AddComment() {
                 name="type"
                 value={input.type}
               >
-                <option disabled>type</option>
-                <option>app-villa</option>
-                <option>pharmacies</option>
-                <option>banks</option>
-                <option>commercial</option>
-                <option>offices</option>
+                <option>type</option>
+                {data?.dataType.map((o: any, a: any): any => (
+                  <option value={o.href.slice(6)} key={a}>
+                    {o.name}
+                  </option>
+                ))}
               </select>
             </span>
             <div className="flex gap-3">
+              {}
               <button
-                className="btn btn-error btn-block capitalize"
+                className={`btn btn-error btn-block capitalize disabled:opacity-75`}
                 onClick={addComment}
               >
                 {err === "loading" ? (

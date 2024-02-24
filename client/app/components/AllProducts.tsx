@@ -18,7 +18,7 @@ function AllProducts() {
   const router = useRouter();
   const resSearchParams = searchParams.get("type");
   if (resSearchParams === null) {
-    router.push("?type=app-villa");
+    router.push("?type=app");
   } else {
   }
   const [data, setData] = useState([]);
