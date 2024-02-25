@@ -31,7 +31,7 @@ function MenuLog({ name }: any) {
       >
         <div className="dropdown-container justify-center">
           <div className="dropdown">
-            <label className="btn btn-solid-error flex gap-2 my-2">
+            <label className="btn bg-p flex gap-2 my-2">
               <CgProfile />
               {name}
             </label>
@@ -45,7 +45,7 @@ function MenuLog({ name }: any) {
         } pt-12 flex justify-center duration-300 bg-white shadow-md rounded-md `}
       >
         <ul className="flex justify-center gap-2 p-2 flex-wrap text-black w-fit  capitalize">
-          <div className="shadow-md bg-slate-600  p-1 rounded-md  flex flex-wrap gap-1 mb-2">
+          <div className="shadow-md bg-p  p-1 rounded-md  text-white flex flex-wrap gap-1 mb-2">
             <div className="capitalize flex w-full">
               name: {dataLoginUser?.name}
             </div>
@@ -62,7 +62,7 @@ function MenuLog({ name }: any) {
               deleteCookie("data");
               window.location.reload();
             }}
-            className="dropdown-item text-sm btn-error text-center"
+            className="dropdown-item text-sm bg-p text-center"
           >
             Logout
           </li>

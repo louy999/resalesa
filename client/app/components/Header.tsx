@@ -100,7 +100,12 @@ function Header() {
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
             <Link className="block text-teal-600 " href="/">
-              <Image src="/logo2.ico" alt="logo" width={50} height={50} />
+              <Image
+                src="/beh-removebg.png"
+                alt="logo"
+                width={200}
+                height={200}
+              />
             </Link>
           </div>
 

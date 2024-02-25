@@ -27,7 +27,7 @@ function Login() {
         phone: `${res.data.data.phone}`,
       });
       setError(
-        <div className="alert bg-red-11 absolute bottom-5 left-5 w-fit">
+        <div className="alert bg-p absolute bottom-5 left-5 w-fit">
           <svg
             width="48"
             height="48"
@@ -98,11 +98,12 @@ function Login() {
 
         <main className="flex items-center justify-center  text-center	 lg:text-start md:text-start max-sm:h-5/6	 px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl">
-            <h1 className="mt-6 text-2xl font-bold text-content1 sm:text-3xl md:text-4xl">
-              Welcome to ResaLesa 🏘️
+            <h1 className="mt-7 text-2xl font-bold text-content1 sm:text-3xl md:text-4xl">
+              Welcome to
+              <span className=" font-extrabold text-p"> 22Deal🏘️</span>
             </h1>
 
-            <form className="mx-auto flex w-full max-w-lg flex-col rounded-xl border border-border bg-backgroundSecondary p-4 sm:p-20">
+            <form className="mx-auto flex w-full max-w-lg flex-col rounded-xl border border-border bg-backgroundSecondary p-4 sm:p-16">
               {/* <div className="flex w-full flex-col gap-2">
                 <p>Sign in with</p>
                 <div className="flex w-full flex-col gap-2">
@@ -146,14 +147,6 @@ function Login() {
               <div className="form-group">
                 <Link href="/" className="block text-p">
                   <span className="sr-only">Home</span>
-
-                  <Image
-                    src="/favicon.ico"
-                    alt="icon"
-                    className="h-8 sm:h-10"
-                    width={50}
-                    height={100}
-                  />
                 </Link>
                 <div className="form-field">
                   <label className="form-label">Email address</label>
@@ -193,7 +186,7 @@ function Login() {
                     <label className="form-label">
                       <Link
                         href="/"
-                        className="link link-underline-hover text-red-11 text-sm"
+                        className="link link-underline-hover  text-sm text-p"
                       >
                         Forgot your password?
                       </Link>
@@ -207,7 +200,7 @@ function Login() {
                   >
                     <button
                       type="button"
-                      className="btn text-red-11 w-full hover:text-backgroundSecondary hover:bg-red-11"
+                      className="btn text-p w-full hover:text-backgroundSecondary hover:bg-p  "
                     >
                       Sign in
                     </button>
@@ -218,7 +211,7 @@ function Login() {
                   <div className="form-control">
                     <Link
                       href="/register"
-                      className="link link-underline-hover text-red-11 text-sm"
+                      className="link link-underline-hover text-p text-sm"
                     >
                       Create new account
                     </Link>

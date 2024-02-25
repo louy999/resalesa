@@ -33,7 +33,7 @@ function Register() {
                 phone: `${res.data.data.phone}`,
               });
               setCon(
-                <div className="alert bg-red-11 absolute bottom-5 left-5 w-fit">
+                <div className="alert bg-p absolute bottom-5 left-5 w-fit">
                   <svg
                     width="48"
                     height="48"
@@ -107,8 +107,9 @@ function Register() {
       <div className="flex justify-center items-center h-screen">
         <main className="flex items-center justify-center  text-center  lg:text-start md:text-start	 px-4 py-4  sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 w-full md:w-4/6 ">
           <div className="w-full flex justify-center flex-wrap">
-            <h1 className="mt-6 text-2xl w-full text-center font-bold text-content1 sm:text-3xl md:text-4xl">
-              Welcome to ResaLesa 🏘️
+            <h1 className="mt-8 capitalize text-2xl w-full text-center font-bold text-content1 sm:text-3xl md:text-4xl">
+              join with{" "}
+              <span className=" font-extrabold text-p"> 22Deal🏘️</span>
             </h1>
             <form className="mx-auto flex w-full max-w-lg flex-col rounded-xl border border-border bg-backgroundSecondary p-2 sm:p-12">
               {/* <div className="flex w-full flex-col gap-2">
@@ -154,14 +155,6 @@ function Register() {
               <div className="form-group capitalize">
                 <Link href="/" className="block text-p">
                   <span className="sr-only">Home</span>
-
-                  <Image
-                    src="/favicon.ico"
-                    alt="icon"
-                    className="h-8 sm:h-10"
-                    width={50}
-                    height={100}
-                  />
                 </Link>
                 {con}
                 <div className="text-p uppercase text-xl">{err}</div>
@@ -227,7 +220,7 @@ function Register() {
                     <label className="form-label">
                       <Link
                         href="/"
-                        className="link link-underline-hover text-red-11 text-sm"
+                        className="link link-underline-hover text-p text-sm"
                       >
                         Forgot your password?
                       </Link>
@@ -241,7 +234,7 @@ function Register() {
                   >
                     <button
                       type="button"
-                      className="btn text-red-11 w-full hover:text-backgroundSecondary hover:bg-red-11"
+                      className="btn text-p w-full hover:text-backgroundSecondary hover:bg-p"
                     >
                       Sign in
                     </button>
@@ -252,7 +245,7 @@ function Register() {
                   <div className="form-control">
                     <Link
                       href="/login"
-                      className="link link-underline-hover text-red-11 text-sm"
+                      className="link link-underline-hover text-p text-sm"
                     >
                       have an account? Sign in
                     </Link>

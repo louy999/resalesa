@@ -31,7 +31,7 @@ function AllRequest() {
     console.log(resSearchParams);
   }, [resSearchParams]);
   return (
-    <div className="w-full  relative top-[100px] left-[50%] translate-x-[-50%] h-fit border  rounded-md p-2 shadow-lg bg-stone-100">
+    <div className="w-full md:w-[70%] relative top-[100px] left-[50%] translate-x-[-50%] h-fit border  rounded-md p-2 shadow-lg bg-stone-100">
       <RenderBarType colorBar={"black"} />
       <div className="border-l-4  border-l-p">
         {data

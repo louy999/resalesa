@@ -43,7 +43,7 @@ function AddComment() {
   return (
     <>
       <div className="fixed bottom-5 left-5">
-        <label className="btn btn-error" htmlFor="modal-3">
+        <label className="btn bg-p" htmlFor="modal-3">
           Add Comment
         </label>
         <input className="modal-state" id="modal-3" type="checkbox" />
@@ -52,21 +52,21 @@ function AddComment() {
           <div className="modal-content flex flex-col gap-5">
             <label
               htmlFor="modal-3"
-              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+              className="btn btn-sm btn-circle bg-p text-white absolute right-2 top-2"
             >
               ✕
             </label>
-            <h2 className="text-xl">ResaLesa</h2>
+            <h2 className="text-xl">22Deal</h2>
             <span className="">
               <input
-                className="input input-solid-error text-white"
+                className="input bg-p  text-white"
                 placeholder="Write Your Request"
                 name="req"
                 onChange={handelChange}
                 value={input.req}
               />
               <select
-                className="select select-error mt-2"
+                className="select select-warning mt-2"
                 onChange={handelChange}
                 name="type"
                 value={input.type}
@@ -82,7 +82,7 @@ function AddComment() {
             <div className="flex gap-3">
               {}
               <button
-                className={`btn btn-error btn-block capitalize disabled:opacity-75`}
+                className={`btn pg-p btn-block capitalize disabled:opacity-75`}
                 onClick={addComment}
               >
                 {err === "loading" ? (

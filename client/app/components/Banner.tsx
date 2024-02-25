@@ -9,10 +9,9 @@ function Banner() {
       <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
         <div className="max-w-xl select-none	 text-start  ltr:sm:text-left rtl:sm:text-right">
           <h1 className="text-5xl font-extrabold sm:text-7xl text-white">
-            Let us find your
-            <strong className="block font-extrabold text-p">
-              Forever Home.
-            </strong>
+            Where Dreams Meet
+            <span className=" font-extrabold text-p"> Reality!</span>
+            {/* <strong >22Deal</strong> */}
           </h1>
         </div>
       </div>
