@@ -13,7 +13,7 @@ const resizeImage = (req: any, res: any, next: any) => {
 	// Resize the image using Sharp
 	sharp(imagePath)
 		.resize({width: 300, height: 300})
-		.toFile(path.join('./uploads/', 'resized-' + filename), (err) => {
+		.toFile(path.join('./uploads/', filename), (err) => {
 			if (err) {
 				return next(err)
 			}

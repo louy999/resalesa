@@ -57,7 +57,7 @@ function DeveloperData() {
                   width={1000}
                   height={1000}
                   alt="Lava"
-                  src={`${d.developer_img}`}
+                  src={`http://localhost:5000/image/${d.developer_img}`}
                   className="h-56 w-56 m-auto rounded-full object-cover drop-shadow-2xl mb-2 transition group-hover:grayscale-[50%]"
                 />
 

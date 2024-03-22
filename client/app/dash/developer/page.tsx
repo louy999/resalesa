@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import axiosClient from "../../utils/api";
 import AddDevBtn from "../components/AddDevBtn";
 import Image from "next/image";
+import EditDevBtn from "../components/EditDevBtn";
 
 function Page() {
   const [data, setData] = useState([]);
@@ -13,7 +14,6 @@ function Page() {
       try {
         const res = await axiosClient.get("/dev");
         setData(res.data.data);
-        console.log(res.data.data);
       } catch (err) {
         console.log(err);
       }
@@ -29,21 +29,22 @@ function Page() {
         <AddDevBtn />
       </h1>
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 flex-wrap">
-        {data.map((d, a) => (
+        {data.map((d) => (
           <article
-            key={a}
+            key={d.id}
             // onClick={(e) => {
             //   e.preventDefault;
             //   router.push(`?id=${d.id}`);
             // }}
             className="hover:animate-background relative bg-gray-200 text-black select-none rounded-xl  bg-gradient-to-r p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
           >
+            {/* <EditDevBtn idDev={d} /> */}
             <div className="rounded-[10px]  p-4 !pt-3 sm:p-6">
               <Image
                 width={1000}
                 height={1000}
                 alt="Lava"
-                src={`${d.developer_img}`}
+                src={`http://localhost:5000/image/${d.developer_img}`}
                 className="h-56 w-56 m-auto rounded-full object-cover drop-shadow-2xl mb-2 transition group-hover:grayscale-[50%]"
               />
 

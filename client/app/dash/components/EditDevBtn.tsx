@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import axiosClient from "../../utils/api";
 import axios from "axios";
+import { FaEdit } from "react-icons/fa";
 
-function AddDevBtn() {
+function EditDevBtn({ idDev }) {
   const [input, setInput] = useState({
     status: true,
     sales_name: "",
@@ -50,9 +51,7 @@ function AddDevBtn() {
       );
       console.log(response.data);
       input.developer_img = response.data;
-      const res = await axiosClient.post("/dev", input).then((res) => {
-        window.location.reload();
-      });
+      const res = await axiosClient.post("/dev", {});
       console.log(res.data.data);
     } catch (error) {
       console.error(error);
@@ -63,20 +62,28 @@ function AddDevBtn() {
 
   return (
     <>
-      <label className="btn btn-p" htmlFor="modal-1">
-        <IoMdAddCircle />
+      <label className="" htmlFor={`modal-${idDev.id}`}>
+        <FaEdit
+          className=" absolute top-1 right-1  text-p  cursor-pointer text-lg  w-5 h-5 "
+          onClick={() => {
+            console.log(idDev.id);
+          }}
+        />
       </label>
-      <input className="modal-state" id="modal-1" type="checkbox" />
+
+      <input className="modal-state" id={`modal-${idDev.id}`} type="checkbox" />
       <div className="modal">
-        <label className="modal-overlay" htmlFor="modal-1"></label>
+        <label className="modal-overlay"></label>
         <div className="modal-content flex flex-col gap-5">
           <label
-            htmlFor="modal-1"
+            htmlFor={`modal-${idDev.id}`}
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
           >
             ✕
           </label>
-          <h2 className="text-xl">Add developer</h2>
+          <h2 className="text-xl text-white">
+            Edit Dev {idDev.developer_name}
+          </h2>
           <input
             className="input-ghost-primary input"
             onChange={handleChange}
@@ -118,9 +125,7 @@ function AddDevBtn() {
             ))}
           </div>
           <div className="flex gap-3">
-            <button className="btn btn-p btn-block" onClick={handleUpload}>
-              Add Developer
-            </button>
+            <button className="btn btn-p btn-block">Update</button>
           </div>
         </div>
       </div>
@@ -128,4 +133,4 @@ function AddDevBtn() {
   );
 }
 
-export default AddDevBtn;
+export default EditDevBtn;
