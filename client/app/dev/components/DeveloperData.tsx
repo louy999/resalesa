@@ -97,7 +97,7 @@ function DeveloperData() {
                 >
                   <span className="absolute inset-0 translate-x-1  translate-y-1 bg-p rounded-full  transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
 
-                  <span className="flex relative items-center  justify-between rounded-full border-2 border-rose-700  border-current px-4 py-1 text-sm font-bold uppercase tracking-widest text-black group-active:text-opacity-75">
+                  <span className="flex relative items-center  justify-between rounded-full border-2 border-p  border-current px-4 py-1 text-sm font-bold uppercase tracking-widest text-black group-active:text-opacity-75">
                     <MdAddCall className="text-3 h-5 w-5 " />
                   </span>
                 </a>

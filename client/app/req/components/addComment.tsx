@@ -27,13 +27,17 @@ function AddComment() {
           req: input.req,
           client_name: JSON.parse(cookieData)?.name,
         });
-        console.log(res.data);
         setTimeout(() => {
           window.location.reload();
-        }, 2000);
+        }, 10000);
         setErr("Done");
       } catch (error: any) {
         console.log(error);
+      } finally {
+        setErr("done");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       }
     } else {
       window.location.pathname = "/login";
@@ -80,12 +84,23 @@ function AddComment() {
               </select>
             </span>
             <div className="flex gap-3">
-              {}
-              <button
-                className={`btn pg-p btn-block capitalize disabled:opacity-75`}
-                onClick={addComment}
-              >
-                {err === "loading" ? (
+              {err === "" ? (
+                <button
+                  className={`btn pg-p btn-block capitalize disabled:opacity-75 `}
+                  onClick={addComment}
+                >
+                  add comment
+                </button>
+              ) : err === "done" ? (
+                <button
+                  className={`btn pg-p btn-block capitalize disabled:opacity-75 `}
+                >
+                  done
+                </button>
+              ) : (
+                <button
+                  className={`btn pg-p btn-block capitalize disabled:opacity-75 `}
+                >
                   <svg
                     className="spinner-ring spinner-error"
                     viewBox="25 25 50 50"
@@ -93,12 +108,8 @@ function AddComment() {
                   >
                     <circle cx="50" cy="50" r="20" />
                   </svg>
-                ) : err === "Done" ? (
-                  "Done"
-                ) : (
-                  "add comment"
-                )}
-              </button>
+                </button>
+              )}
             </div>
           </div>
         </div>
