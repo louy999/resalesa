@@ -6,7 +6,9 @@
 	"scripts": {
 		"start": "nodemon index.ts",
 		"mig-up": " db-migrate up",
-		"mig-down": " db-migrate reset"
+		"mig-down": " db-migrate reset",
+		"dev": "pm2 delete teacher; pm2 start --name teacher  \"npx ts-node --transpile-only index.ts\" --watch",
+		"dev:d": "pm2 delete teacher;"
 	},
 	"author": "",
 	"license": "ISC",
